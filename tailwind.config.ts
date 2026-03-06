@@ -6,7 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: ["selector", "[data-theme='dark']"],
+  darkMode: ["selector", "[data-theme='dark']", "class"],
   theme: {
     extend: {
       fontWeight: {
@@ -16,43 +16,45 @@ const config: Config = {
         bold: "var(--font-weight-bold)",
       },
       colors: {
-        // Text colors
-        text: {
-          primary: "var(--text-primary)",
-          secondary: "var(--text-secondary)",
-          tertiary: "var(--text-tertiary)",
-          inverse: "var(--text-inverse)",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-        // Foreground colors (icons, indicators)
-        fg: {
-          primary: "var(--fg-primary)",
-          secondary: "var(--fg-secondary)",
-          tertiary: "var(--fg-tertiary)",
-          disabled: "var(--fg-disabled)",
-          "brand-primary": "var(--fg-brand-primary)",
-          "brand-secondary": "var(--fg-brand-secondary)",
-          "error-primary": "var(--fg-error-primary)",
-          "success-primary": "var(--fg-success-primary)",
-          "warning-primary": "var(--fg-warning-primary)",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-        // Background colors
-        bg: {
-          primary: "var(--bg-primary)",
-          secondary: "var(--bg-secondary)",
-          tertiary: "var(--bg-tertiary)",
-          quaternary: "var(--bg-quaternary)",
-          active: "var(--bg-active)",
-          overlay: "var(--bg-overlay)",
-          "filter-button": "var(--bg-filter-button)",
-          disabled: "var(--bg-disabled)",
-          "brand-primary": "var(--bg-brand-primary)",
-          "brand-secondary": "var(--bg-brand-secondary)",
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        // Border colors
-        border: {
-          primary: "var(--border-primary)",
-          secondary: "var(--border-secondary)",
-          disabled: "var(--border-disabled)",
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
         },
       },
       spacing: {
@@ -70,6 +72,9 @@ const config: Config = {
         "radius-md": "var(--radius-md)",
         "radius-lg": "var(--radius-lg)",
         "radius-xl": "var(--radius-xl)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       fontSize: {
         "text-xs": "var(--font-size-text-xs)",
@@ -91,7 +96,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;
