@@ -1,9 +1,11 @@
 import { MetricItem } from "./MetricItem";
 
 const metrics = [
-  { label: "환율", value: "1,394.12원", changePercent: 2.46, trend: "up" as const },
-  { label: "달러 인덱스", value: "97.73", changePercent: 2.06, trend: "down" as const },
-  { label: "금", value: "$1,990.12", changePercent: 4.02, trend: "down" as const },
+  { label: "글로벌 전체 시총", value: "$2.87T", changePercent: 3.12, trend: "up" as const },
+  { label: "글로벌 24시간 거래량 변동률", value: "$94.5B", changePercent: 12.38, trend: "up" as const },
+  { label: "비트코인 도미넌스", value: "54.2%", changePercent: 0.87, trend: "up" as const },
+  { label: "김치 프리미엄", value: "3.42%", changePercent: 1.15, trend: "down" as const },
+  { label: "공탐지수", value: "72 (탐욕)", changePercent: 5.26, trend: "up" as const },
 ];
 
 export function MarketSummary() {
