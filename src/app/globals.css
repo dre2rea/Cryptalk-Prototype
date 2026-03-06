@@ -1,26 +1,133 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Base defaults (applied when no theme is set) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Spacing - theme independent */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+
+  /* Border radius - theme independent */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+
+  /* Font sizes - theme independent */
+  --font-size-text-xs: 12px;
+  --font-size-text-sm: 14px;
+  --font-size-text-md: 16px;
+  --font-size-text-lg: 18px;
+  --font-size-display-xs: 24px;
+  --font-size-display-sm: 30px;
+  --font-size-display-md: 36px;
+
+  /* Line heights - theme independent */
+  --line-height-text-xs: 18px;
+  --line-height-text-sm: 20px;
+  --line-height-text-md: 24px;
+  --line-height-text-lg: 28px;
+  --line-height-display-xs: 32px;
+  --line-height-display-sm: 38px;
+  --line-height-display-md: 44px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light theme */
+:root,
+[data-theme="light"] {
+  /* Font weights - heavier for light backgrounds */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Text colors */
+  --text-primary: #181d27;
+  --text-secondary: #52525b;
+  --text-tertiary: #71717a;
+  --text-inverse: #e9eaeb;
+
+  /* Foreground colors (icons, indicators) */
+  --fg-primary: #181d27;
+  --fg-secondary: #52525b;
+  --fg-tertiary: #71717a;
+  --fg-disabled: #a1a1aa;
+  --fg-brand-primary: #6366f1;
+  --fg-brand-secondary: #818cf8;
+  --fg-error-primary: #d92d20;
+  --fg-success-primary: #079455;
+  --fg-warning-primary: #f59e0b;
+
+  /* Background colors */
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f4f4f5;
+  --bg-quaternary: #e4e4e7;
+  --bg-active: #f4f4f5;
+  --bg-overlay: #52525b;
+  --bg-filter-button: #e4e4e7;
+  --bg-disabled: #f4f4f5;
+  --bg-brand-primary: #675ef6;
+  --bg-brand-secondary: #7d7ffc;
+
+  /* Border colors */
+  --border-primary: #d5d7da;
+  --border-secondary: #e4e4e7;
+  --border-disabled: #a1a1aa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark theme */
+[data-theme="dark"] {
+  /* Font weights - lighter for dark backgrounds */
+  --font-weight-regular: 300;
+  --font-weight-medium: 400;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 600;
+
+  /* Text colors */
+  --text-primary: #f7f7f7;
+  --text-secondary: #cecfd2;
+  --text-tertiary: #94969c;
+  --text-inverse: #18181b;
+
+  /* Foreground colors (icons, indicators) */
+  --fg-primary: #ffffff;
+  --fg-secondary: #94969c;
+  --fg-tertiary: #85888e;
+  --fg-disabled: #61646c;
+  --fg-brand-primary: #818cf8;
+  --fg-brand-secondary: #6366f1;
+  --fg-error-primary: #f04438;
+  --fg-success-primary: #17b26a;
+  --fg-warning-primary: #f79009;
+
+  /* Background colors */
+  --bg-primary: #0c0e12;
+  --bg-secondary: #13161b;
+  --bg-tertiary: #1a1d23;
+  --bg-quaternary: #22262f;
+  --bg-active: #1a1d23;
+  --bg-overlay: #22262f;
+  --bg-filter-button: #22262f;
+  --bg-disabled: #1a1d23;
+  --bg-brand-primary: #675ef6;
+  --bg-brand-secondary: #7d7ffc;
+
+  /* Border colors */
+  --border-primary: #333741;
+  --border-secondary: #22262f;
+  --border-disabled: #373a41;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Noto Sans KR", Arial, Helvetica, sans-serif;
 }
