@@ -81,6 +81,8 @@
   --badge-bg: #fdfdff;
   --badge-border: #ebecf4;
   --badge-text: #3b3f46;
+  --badge-danger-bg: rgba(216, 33, 56, 0.08);
+  --badge-success-bg: rgba(26, 127, 76, 0.08);
 
   /* Shadows */
   --shadow-card: 0px 4px 18px 0px rgba(0, 0, 0, 0.02);
@@ -127,6 +129,8 @@
   --badge-bg: #191919;
   --badge-border: #262626;
   --badge-text: #969696;
+  --badge-danger-bg: rgba(185, 18, 46, 0.22);
+  --badge-success-bg: rgba(5, 51, 33, 0.72);
 
   /* Shadows */
   --shadow-card: 0px 2px 20px 0px rgba(10, 13, 18, 0.03);

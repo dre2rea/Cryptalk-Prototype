@@ -1,8 +1,7 @@
 import { SearchIcon, MoonIcon, SunIcon, BellIcon, UserIcon } from "./icons";
 
 const navItems = [
-  { label: "홈", active: true },
-  { label: "종목 골라보기", active: false },
+  { label: "시장 현황", active: true },
   { label: "커뮤니티", active: false },
 ];
 
@@ -17,8 +16,8 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
       <div className="w-full px-8 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">
-          <span className="font-['Sarpanch',sans-serif] text-[22px] font-bold text-[var(--text-primary)] tracking-tight">
-            CRYPTALK
+          <span className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight">
+            Crypto Mine
           </span>
           <nav className="flex items-center gap-4">
             {navItems.map((item) => (
