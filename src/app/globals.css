@@ -66,16 +66,16 @@
   --fg-success-primary: #1a7f4c;
 
   /* Background colors */
-  --bg-primary: #f8f9ff;
-  --bg-secondary: #fdfdff;
-  --bg-tertiary: #f3f4fb;
+  --bg-primary: #fcfbf9;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f9f9f9;
   --bg-quaternary: #efefef;
-  --bg-active: #f3f4fb;
-  --bg-disabled: #f3f4fb;
+  --bg-active: #f9f9f9;
+  --bg-disabled: #f9f9f9;
 
   /* Border colors */
-  --border-primary: #eef1f8;
-  --border-secondary: #ebecf4;
+  --border-primary: #eeeeee;
+  --border-secondary: #eeeeee;
 
   /* Badge */
   --badge-bg: #fdfdff;

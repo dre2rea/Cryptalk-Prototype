@@ -12,7 +12,7 @@ export function MetricItem({ label, value, changePercent, trend }: MetricItemPro
   const color = isUp ? "var(--fg-success-primary)" : "var(--fg-error-primary)";
 
   return (
-    <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[12px] px-4 py-4 flex flex-col gap-2 flex-1 min-w-0 max-w-[309px] shadow-[var(--shadow-card)]">
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[8px] px-4 py-4 flex flex-col gap-2 flex-1 min-w-0 max-w-[309px] shadow-[var(--shadow-card)]">
       <p className="text-[14px] leading-[24px] text-[var(--text-tertiary)]">
         {label}
       </p>
