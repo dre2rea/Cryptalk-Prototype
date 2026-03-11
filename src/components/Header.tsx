@@ -38,16 +38,16 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
         {/* Right: Actions + Avatar */}
         <div className="flex items-center gap-3">
           <div className="flex items-center">
-            <button className="p-3 rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
+            <button className="p-[10px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
               <SearchIcon />
             </button>
             <button
               onClick={onThemeToggle}
-              className="p-3 rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
+              className="p-[10px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
             >
               {isDark ? <MoonIcon /> : <SunIcon />}
             </button>
-            <button className="p-3 rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
+            <button className="p-[10px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
               <BellIcon />
             </button>
           </div>
