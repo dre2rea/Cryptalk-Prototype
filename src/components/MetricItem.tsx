@@ -5,34 +5,75 @@ interface MetricItemProps {
   value: string;
   changePercent: number;
   trend: "up" | "down";
+  badge?: string;
+  badgeVariant?: "danger" | "success";
+  showChart?: boolean;
 }
 
-export function MetricItem({ label, value, changePercent, trend }: MetricItemProps) {
+function Change({ changePercent, trend }: { changePercent: number; trend: "up" | "down" }) {
   const isUp = trend === "up";
   const color = isUp ? "var(--fg-success-primary)" : "var(--fg-error-primary)";
 
   return (
-    <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[12px] px-5 py-[22px] flex flex-col gap-2 flex-1 min-w-0 max-w-[309px] shadow-[var(--shadow-card)]">
-      <p className="text-[16px] leading-[24px] text-[var(--text-tertiary)]">
-        {label}
-      </p>
-      <div className="flex items-end justify-between">
-        <div className="flex flex-col gap-3">
-          <p className="text-[22px] leading-[38px] font-semibold text-[var(--text-primary)]">
+    <div className="flex items-center gap-1">
+      <span className="size-[10px] flex items-center justify-center" style={{ color }}>
+        {isUp ? <ArrowUpIcon size={10} className="text-inherit" /> : <ArrowDownIcon size={10} className="text-inherit" />}
+      </span>
+      <span className="text-[12px] leading-[18px] font-medium whitespace-nowrap" style={{ color }}>
+        {changePercent}%
+      </span>
+    </div>
+  );
+}
+
+function Badge({ label, variant }: { label: string; variant: "danger" | "success" }) {
+  const styles = variant === "danger"
+    ? "bg-[var(--badge-danger-bg)] text-[var(--fg-error-primary)]"
+    : "bg-[var(--badge-success-bg)] text-[var(--fg-success-primary)]";
+
+  return (
+    <span className={`text-[12px] leading-[18px] font-medium px-[6px] py-[2px] rounded-[4px] whitespace-nowrap ${styles}`}>
+      {label}
+    </span>
+  );
+}
+
+export function MetricItem({ label, value, changePercent, trend, badge, badgeVariant, showChart }: MetricItemProps) {
+  if (showChart) {
+    return (
+      <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[6px] px-4 py-3 flex flex-col gap-[6px] w-[216px] h-[86px] shrink-0 shadow-[var(--shadow-card)]">
+        <div className="flex items-center justify-between">
+          <p className="text-[12px] leading-[24px] text-[var(--text-tertiary)] whitespace-nowrap">
+            {label}
+          </p>
+          <Change changePercent={changePercent} trend={trend} />
+        </div>
+        <div className="flex items-center justify-between flex-1 min-h-0">
+          <p className="text-[18px] leading-[38px] font-semibold text-[var(--text-primary)] whitespace-nowrap">
             {value}
           </p>
-          <div className="flex items-center gap-[2px]">
-            <span className="size-4 flex items-center justify-center" style={{ color }}>
-              {isUp ? <ArrowUpIcon size={16} className="text-inherit" /> : <ArrowDownIcon size={16} className="text-inherit" />}
-            </span>
-            <span className="text-[14px] leading-[20px] font-medium" style={{ color }}>
-              {changePercent}%
-            </span>
+          <div className="w-[72px] h-[32px] flex-shrink-0">
+            <MiniChart trend={trend} />
           </div>
         </div>
-        <div className="w-[128px] h-[70px] flex-shrink-0">
-          <MiniChart trend={trend} />
-        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[6px] px-4 py-3 flex flex-col w-[174px] shrink-0 shadow-[var(--shadow-card)]">
+      <p className="text-[12px] leading-[24px] text-[var(--text-tertiary)] whitespace-nowrap">
+        {label}
+      </p>
+      <div className="flex items-center justify-between">
+        <p className="text-[18px] leading-[38px] font-semibold text-[var(--text-primary)] whitespace-nowrap">
+          {value}
+        </p>
+        {badge && badgeVariant ? (
+          <Badge label={badge} variant={badgeVariant} />
+        ) : (
+          <Change changePercent={changePercent} trend={trend} />
+        )}
       </div>
     </div>
   );
