@@ -91,11 +91,11 @@
 
 /* Dark theme */
 [data-theme="dark"] {
-  /* Font weights - lighter for dark backgrounds */
-  --font-weight-regular: 300;
-  --font-weight-medium: 400;
-  --font-weight-semibold: 500;
-  --font-weight-bold: 600;
+  /* Font weights - same as light theme */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   /* Text colors */
   --text-primary: #f1f1f1;

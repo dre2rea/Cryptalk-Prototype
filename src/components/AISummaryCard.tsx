@@ -8,38 +8,24 @@ const marketStatus = {
 
 const summaryPoints = [
   {
-    text: "글로벌 시총이 30일 내 최저치인 {$2.12조}로 후퇴. 글로벌 거래량도 7일 평균 대비 {34%} 감소. 시장 관망세가 뚜렷.",
+    title: "관망세 뚜렷",
+    text: "글로벌 시총이 30일 내 최저치로 후퇴하고, 거래량도 7일 평균 대비 34% 감소. 매수·매도 모두 위축된 상태.",
   },
   {
-    text: "BTC 도미넌스가 90일 최고치({60.2%}) 돌파. 알트에서 BTC로 자금 회전 진행 중.",
+    title: "알트 자금 이탈 중",
+    text: "BTC 도미넌스가 90일 최고치를 돌파하며 알트에서 BTC로 자금 회전이 진행 중. 알트 시즌 지연 가능성.",
   },
   {
-    text: "김치 프리미엄 역전 2일차. 해외 매도 압력이 국내보다 강한 상태.",
+    title: "해외 매도 압력 우세",
+    text: "김치 프리미엄 역전 2일차. 해외 시장의 매도 압력이 국내보다 강한 상태로, 단기 하방 시그널.",
   },
 ];
 
 const statusConfig = {
-  bearish: { colorVar: "--fg-error-primary", badgeBgVar: "--badge-danger-bg" },
-  neutral: { colorVar: "--text-tertiary", badgeBgVar: "--bg-quaternary" },
-  bullish: { colorVar: "--fg-success-primary", badgeBgVar: "--badge-success-bg" },
+  bearish: { colorVar: "--fg-error-primary" },
+  neutral: { colorVar: "--text-tertiary" },
+  bullish: { colorVar: "--fg-success-primary" },
 };
-
-function parseHighlights(text: string, colorVar: string) {
-  const parts = text.split(/(\{[^}]+\})/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("{") && part.endsWith("}")) {
-      return (
-        <span
-          key={i}
-          style={{ color: `var(${colorVar})`, fontWeight: "var(--font-weight-semibold)" as unknown as number }}
-        >
-          {part.slice(1, -1)}
-        </span>
-      );
-    }
-    return part;
-  });
-}
 
 export function AISummaryCard() {
   const sc = statusConfig[marketStatus.level];
@@ -56,6 +42,7 @@ export function AISummaryCard() {
 
       <div
         style={{
+          maxWidth: "38%",
           borderRadius: "var(--radius-base)",
           border: "1px solid var(--border-primary)",
           backgroundColor: "var(--bg-secondary)",
@@ -69,15 +56,17 @@ export function AISummaryCard() {
             display: "flex",
             alignItems: "center",
             gap: "var(--spacing-md)",
-            marginBottom: "var(--spacing-xl)",
+            paddingBottom: "var(--spacing-xl)",
+            borderBottom: "1px solid var(--border-primary)",
+            marginBottom: "var(--spacing-2xl)",
           }}
         >
           <span
             style={{
               position: "relative",
               flexShrink: 0,
-              width: 8,
-              height: 8,
+              width: 10,
+              height: 10,
             }}
           >
             <span
@@ -103,7 +92,7 @@ export function AISummaryCard() {
           <span
             style={{
               fontSize: "var(--font-size-text-md)",
-              fontWeight: "var(--font-weight-semibold)" as unknown as number,
+              fontWeight: "var(--font-weight-bold)" as unknown as number,
               lineHeight: "var(--line-height-text-md)",
               color: `var(${sc.colorVar})`,
             }}
@@ -120,29 +109,53 @@ export function AISummaryCard() {
           >
             ({marketStatus.phase})
           </span>
+          <span
+            style={{
+              marginLeft: "auto",
+              fontSize: "var(--font-size-text-xs)",
+              fontWeight: "var(--font-weight-regular)" as unknown as number,
+              lineHeight: "var(--line-height-text-xs)",
+              color: "var(--text-quaternary)",
+            }}
+          >
+            2026.03.11 14:00 기준
+          </span>
         </div>
 
-        {/* Summary paragraphs */}
+        {/* Summary points */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "var(--spacing-lg)",
+            gap: "var(--spacing-2xl)",
           }}
         >
           {summaryPoints.map((point, i) => (
-            <p
-              key={i}
-              style={{
-                fontSize: "var(--font-size-text-sm)",
-                fontWeight: "var(--font-weight-regular)" as unknown as number,
-                lineHeight: "var(--line-height-text-sm)",
-                color: "var(--text-secondary)",
-                margin: 0,
-              }}
-            >
-              {parseHighlights(point.text, sc.colorVar)}
-            </p>
+            <div key={i}>
+              <p
+                style={{
+                  fontSize: "var(--font-size-text-sm)",
+                  fontWeight: "var(--font-weight-bold)" as unknown as number,
+                  lineHeight: "var(--line-height-text-sm)",
+                  color: "var(--text-primary)",
+                  margin: 0,
+                  marginBottom: "var(--spacing-sm)",
+                }}
+              >
+                {point.title}
+              </p>
+              <p
+                style={{
+                  fontSize: "var(--font-size-text-sm)",
+                  fontWeight: "var(--font-weight-regular)" as unknown as number,
+                  lineHeight: "22px",
+                  color: "var(--text-tertiary)",
+                  margin: 0,
+                }}
+              >
+                {point.text}
+              </p>
+            </div>
           ))}
         </div>
       </div>

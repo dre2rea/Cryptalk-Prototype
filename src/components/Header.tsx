@@ -12,12 +12,12 @@ interface HeaderProps {
 
 export function Header({ isDark, onThemeToggle }: HeaderProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[68px] bg-[var(--bg-primary)] border-b border-[var(--border-primary)] flex items-center justify-center">
+    <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-[var(--bg-primary)] border-b border-[var(--border-primary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">
           <span className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight">
-            Crypto Mine
+            Coin Digest
           </span>
           <nav className="flex items-center gap-4">
             {navItems.map((item) => (
@@ -37,18 +37,18 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
 
         {/* Right: Actions + Avatar */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center">
-            <button className="p-[10px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
-              <SearchIcon />
+          <div className="flex items-center gap-1">
+            <button className="p-[8px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
+              <SearchIcon size={16} />
             </button>
             <button
               onClick={onThemeToggle}
-              className="p-[10px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
+              className="p-[8px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
             >
-              {isDark ? <MoonIcon /> : <SunIcon />}
+              {isDark ? <MoonIcon size={16} /> : <SunIcon size={16} />}
             </button>
-            <button className="p-[10px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
-              <BellIcon />
+            <button className="p-[8px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
+              <BellIcon size={16} />
             </button>
           </div>
           <div className="size-9 rounded-full bg-[var(--bg-quaternary)] border border-[var(--border-secondary)] flex items-center justify-center overflow-hidden">
