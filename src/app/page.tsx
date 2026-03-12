@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MarketSummary } from "@/components/MarketSummary";
 import { AISummaryCard } from "@/components/AISummaryCard";
+import { TopMovers } from "@/components/TopMovers";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true);
@@ -25,8 +26,9 @@ export default function Home() {
       <Header isDark={isDark} onThemeToggle={() => setIsDark(!isDark)} />
       <main className="pt-[100px] pb-[68px] px-8 max-w-[1440px] mx-auto">
         <MarketSummary />
-        <div className="mt-6">
+        <div className="mt-6 flex gap-3">
           <AISummaryCard />
+          <TopMovers />
         </div>
       </main>
       <Footer />

@@ -42,7 +42,8 @@ export function AISummaryCard() {
 
       <div
         style={{
-          maxWidth: "38%",
+          flex: "0 0 38%",
+          minWidth: 0,
           borderRadius: "var(--radius-base)",
           border: "1px solid var(--border-primary)",
           backgroundColor: "var(--bg-secondary)",
