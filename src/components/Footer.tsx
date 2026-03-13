@@ -3,7 +3,7 @@ const rightLinks = ["설문조사", "공지사항"];
 
 export function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 h-[52px] bg-[var(--bg-primary)] flex items-center justify-center">
+    <footer className="h-[52px] bg-[var(--bg-primary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
         <span className="text-[13px] text-[var(--text-quaternary)]">
           © 2026 Coin Digest. All rights reserved.

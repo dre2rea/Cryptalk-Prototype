@@ -9,7 +9,7 @@ const marketStatus = {
 const summaryPoints = [
   {
     title: "관망세 뚜렷",
-    text: "글로벌 시총이 30일 내 최저치로 후퇴하고, 거래량도 7일 평균 대비 34% 감소. 매수·매도 모두 위축된 상태.",
+    text: "글로벌 시총 $2.71조로 30일 내 최저치 후퇴. 거래량 $782억으로 7일 평균 대비 34% 감소. 매수·매도 모두 위축.",
   },
   {
     title: "알트 자금 이탈 중",
@@ -119,7 +119,7 @@ export function AISummaryCard() {
               color: "var(--text-quaternary)",
             }}
           >
-            2026.03.11 14:00 기준
+            2026.03.13 09:00 기준
           </span>
         </div>
 
@@ -136,7 +136,7 @@ export function AISummaryCard() {
               <p
                 style={{
                   fontSize: "var(--font-size-text-sm)",
-                  fontWeight: "var(--font-weight-bold)" as unknown as number,
+                  fontWeight: "var(--font-weight-semibold)" as unknown as number,
                   lineHeight: "var(--line-height-text-sm)",
                   color: "var(--text-primary)",
                   margin: 0,

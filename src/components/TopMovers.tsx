@@ -4,49 +4,49 @@ import { useState } from "react";
 
 const gainersData = {
   "24h": [
-    { rank: 1, name: "솔라나", ticker: "SOL", price: 187.42, change: 12.46 },
-    { rank: 2, name: "아발란체", ticker: "AVAX", price: 38.15, change: 8.25 },
-    { rank: 3, name: "인젝티브", ticker: "INJ", price: 22.51, change: 7.35 },
-    { rank: 4, name: "렌더", ticker: "RNDR", price: 8.74, change: 4.77 },
-    { rank: 5, name: "수이", ticker: "SUI", price: 1.82, change: 2.46 },
+    { rank: 1, name: "리플", ticker: "XRP", price: 2.31, change: 4.82 },
+    { rank: 2, name: "모나드", ticker: "MON", price: 3.74, change: 3.95 },
+    { rank: 3, name: "스택스", ticker: "STX", price: 1.18, change: 2.87 },
+    { rank: 4, name: "인젝티브", ticker: "INJ", price: 14.52, change: 2.14 },
+    { rank: 5, name: "체인링크", ticker: "LINK", price: 13.47, change: 1.73 },
   ],
   "1h": [
-    { rank: 1, name: "인젝티브", ticker: "INJ", price: 22.51, change: 3.12 },
-    { rank: 2, name: "솔라나", ticker: "SOL", price: 187.42, change: 2.84 },
-    { rank: 3, name: "수이", ticker: "SUI", price: 1.82, change: 1.95 },
-    { rank: 4, name: "아발란체", ticker: "AVAX", price: 38.15, change: 1.47 },
-    { rank: 5, name: "렌더", ticker: "RNDR", price: 8.74, change: 0.89 },
+    { rank: 1, name: "모나드", ticker: "MON", price: 3.74, change: 1.84 },
+    { rank: 2, name: "리플", ticker: "XRP", price: 2.31, change: 1.22 },
+    { rank: 3, name: "인젝티브", ticker: "INJ", price: 14.52, change: 0.95 },
+    { rank: 4, name: "스택스", ticker: "STX", price: 1.18, change: 0.71 },
+    { rank: 5, name: "체인링크", ticker: "LINK", price: 13.47, change: 0.38 },
   ],
 };
 
 const losersData = {
   "24h": [
-    { rank: 1, name: "월드코인", ticker: "WLD", price: 2.14, change: -22.46 },
-    { rank: 2, name: "앱토스", ticker: "APT", price: 8.93, change: -21.29 },
-    { rank: 3, name: "헤데라", ticker: "HBAR", price: 0.127, change: -15.09 },
-    { rank: 4, name: "플레이댑", ticker: "PDA", price: 0.089, change: -12.46 },
-    { rank: 5, name: "아이리스", ticker: "IRIS", price: 0.042, change: -9.28 },
+    { rank: 1, name: "월드코인", ticker: "WLD", price: 0.87, change: -11.24 },
+    { rank: 2, name: "앱토스", ticker: "APT", price: 5.41, change: -9.73 },
+    { rank: 3, name: "도지코인", ticker: "DOGE", price: 0.162, change: -4.12 },
+    { rank: 4, name: "이더리움", ticker: "ETH", price: 2187.0, change: -3.41 },
+    { rank: 5, name: "폴카닷", ticker: "DOT", price: 4.82, change: -3.21 },
   ],
   "1h": [
-    { rank: 1, name: "앱토스", ticker: "APT", price: 8.93, change: -5.41 },
-    { rank: 2, name: "월드코인", ticker: "WLD", price: 2.14, change: -4.18 },
-    { rank: 3, name: "플레이댑", ticker: "PDA", price: 0.089, change: -3.72 },
-    { rank: 4, name: "헤데라", ticker: "HBAR", price: 0.127, change: -2.55 },
-    { rank: 5, name: "아이리스", ticker: "IRIS", price: 0.042, change: -1.83 },
+    { rank: 1, name: "앱토스", ticker: "APT", price: 5.41, change: -2.18 },
+    { rank: 2, name: "월드코인", ticker: "WLD", price: 0.87, change: -1.74 },
+    { rank: 3, name: "도지코인", ticker: "DOGE", price: 0.162, change: -1.35 },
+    { rank: 4, name: "폴카닷", ticker: "DOT", price: 4.82, change: -0.92 },
+    { rank: 5, name: "이더리움", ticker: "ETH", price: 2187.0, change: -0.67 },
   ],
 };
 
 const iconColors: Record<string, string> = {
-  SOL: "#9945FF",
-  AVAX: "#E84142",
+  XRP: "#23292F",
+  MON: "#836EF9",
+  STX: "#5546FF",
   INJ: "#00F2FE",
-  RNDR: "#E5405E",
-  SUI: "#4DA2FF",
+  LINK: "#2A5ADA",
   WLD: "#1A1A2E",
   APT: "#2DD8A3",
-  HBAR: "#3A3A3A",
-  PDA: "#FF6B35",
-  IRIS: "#7B61FF",
+  DOGE: "#C2A633",
+  ETH: "#627EEA",
+  DOT: "#E6007A",
 };
 
 function CoinIcon({ ticker }: { ticker: string }) {
