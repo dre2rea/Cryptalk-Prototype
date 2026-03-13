@@ -73,8 +73,8 @@ export function NewsCard() {
   return (
     <div
       style={{
-        width: "38%",
-        borderRadius: "var(--radius-base)",
+        width: "30%",
+        borderRadius: "var(--radius-xl)",
         border: "1px solid var(--border-primary)",
         backgroundColor: "var(--bg-secondary)",
         padding: "var(--spacing-2xl)",
@@ -89,7 +89,7 @@ export function NewsCard() {
           color: "var(--text-primary)",
           margin: 0,
           marginBottom: "var(--spacing-xl)",
-          paddingLeft: "var(--spacing-lg)",
+          paddingLeft: 0,
         }}
       >
         오늘의 뉴스

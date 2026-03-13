@@ -152,7 +152,7 @@ function MoverCard({
   return (
     <div
       style={{
-        borderRadius: "var(--radius-md)",
+        borderRadius: "var(--radius-xl)",
         border: "1px solid var(--border-primary)",
         backgroundColor: "var(--bg-secondary)",
         padding: "var(--spacing-xl) var(--spacing-2xl) var(--spacing-2xl)",

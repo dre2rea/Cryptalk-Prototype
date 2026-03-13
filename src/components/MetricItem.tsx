@@ -41,7 +41,7 @@ function Badge({ label, variant }: { label: string; variant: "danger" | "success
 export function MetricItem({ label, value, changePercent, trend, badge, badgeVariant, showChart }: MetricItemProps) {
   if (showChart) {
     return (
-      <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[var(--radius-base)] px-4 py-3 flex flex-col gap-[6px] w-[216px] h-[86px] shrink-0 shadow-[var(--shadow-card)]">
+      <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[var(--radius-lg)] px-4 py-3 flex flex-col gap-[6px] w-[216px] h-[86px] shrink-0 shadow-[var(--shadow-card)]">
         <div className="flex items-center justify-between">
           <p className="text-[12px] leading-[24px] text-[var(--text-tertiary)] whitespace-nowrap">
             {label}
@@ -61,7 +61,7 @@ export function MetricItem({ label, value, changePercent, trend, badge, badgeVar
   }
 
   return (
-    <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[var(--radius-base)] px-4 py-3 flex flex-col w-[174px] shrink-0 shadow-[var(--shadow-card)]">
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[var(--radius-lg)] px-4 py-3 flex flex-col w-[174px] shrink-0 shadow-[var(--shadow-card)]">
       <p className="text-[12px] leading-[24px] text-[var(--text-tertiary)] whitespace-nowrap">
         {label}
       </p>
