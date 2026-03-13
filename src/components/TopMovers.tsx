@@ -88,7 +88,7 @@ function TimeToggle({
     <div
       style={{
         display: "flex",
-        borderRadius: 6,
+        borderRadius: 7,
         backgroundColor: "var(--bg-primary)",
         border: "1px solid var(--border-primary)",
         padding: 1,
@@ -101,7 +101,7 @@ function TimeToggle({
           onClick={() => onChange(option)}
           style={{
             padding: "2px 9px",
-            borderRadius: 5,
+            borderRadius: 6,
             border: value === option
               ? "1px solid var(--border-primary)"
               : "1px solid transparent",
@@ -196,7 +196,7 @@ function MoverCard({
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "var(--spacing-lg)",
+              gap: "var(--spacing-md)",
               padding: "var(--spacing-md) var(--spacing-sm)",
               borderRadius: "var(--radius-base)",
               cursor: "pointer",

@@ -66,8 +66,8 @@ export function AISummaryCard() {
             style={{
               position: "relative",
               flexShrink: 0,
-              width: 10,
-              height: 10,
+              width: 6,
+              height: 6,
             }}
           >
             <span
@@ -165,3 +165,4 @@ export function AISummaryCard() {
 }
 
 export default AISummaryCard;
+
