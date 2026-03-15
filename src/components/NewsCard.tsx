@@ -109,7 +109,7 @@ export function NewsCard() {
                   display: "flex",
                   alignItems: "center",
                   gap: "var(--spacing-lg)",
-                  padding: "var(--spacing-md) var(--spacing-lg)",
+                  padding: "var(--spacing-md) var(--spacing-sm)",
                   borderRadius: "var(--radius-md)",
                   border: "none",
                   background: isOpen ? "var(--bg-active)" : "transparent",
@@ -133,7 +133,7 @@ export function NewsCard() {
                     lineHeight: "var(--line-height-text-xs)",
                     color: `var(${sc.colorVar})`,
                     backgroundColor: `var(${sc.bgVar})`,
-                    padding: "1px var(--spacing-md)",
+                    padding: "2px var(--spacing-md)",
                     borderRadius: "var(--radius-sm)",
                     flexShrink: 0,
                   }}
@@ -179,7 +179,7 @@ export function NewsCard() {
               {isOpen && (
                 <div
                   style={{
-                    paddingLeft: "3.75rem",
+                    paddingLeft: 54,
                     paddingRight: "var(--spacing-lg)",
                     paddingBottom: "var(--spacing-lg)",
                     paddingTop: "var(--spacing-xs)",
