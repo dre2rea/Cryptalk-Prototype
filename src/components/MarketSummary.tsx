@@ -1,16 +1,16 @@
 import { MetricItem } from "./MetricItem";
 
 const standardMetrics = [
-  { label: "글로벌 거래량", value: "$2.12조", changePercent: 2.46, trend: "up" as const },
-  { label: "글로벌 시가총액", value: "$2.12조", changePercent: 4.29, trend: "down" as const },
-  { label: "비트코인 도미넌스", value: "60.22%", changePercent: 2.46, trend: "up" as const },
-  { label: "공포탐욕지수", value: "18%", changePercent: 0, trend: "down" as const, badge: "극단적 공포", badgeVariant: "danger" as const },
-  { label: "김치 프리미엄", value: "-1.11%", changePercent: 0, trend: "down" as const, badge: "정상", badgeVariant: "success" as const },
+  { label: "글로벌 거래량", value: "$782억", changePercent: 34.2, trend: "down" as const },
+  { label: "글로벌 시가총액", value: "$2.71조", changePercent: 2.87, trend: "down" as const },
+  { label: "비트코인 도미넌스", value: "60.22%", changePercent: 1.84, trend: "up" as const },
+  { label: "공포탐욕지수", value: "18", changePercent: 0, trend: "down" as const, badge: "극단적 공포", badgeVariant: "danger" as const },
+  { label: "김치 프리미엄", value: "-1.11%", changePercent: 0, trend: "down" as const, badge: "역전", badgeVariant: "danger" as const },
 ];
 
 const chartMetrics = [
-  { label: "비트코인", value: "$68,283.02", changePercent: 2.46, trend: "up" as const, showChart: true },
-  { label: "이더리움", value: "$8,283.12", changePercent: 4.29, trend: "down" as const, showChart: true },
+  { label: "비트코인", value: "$83,241.00", changePercent: 2.14, trend: "down" as const, showChart: true },
+  { label: "이더리움", value: "$2,187.00", changePercent: 3.41, trend: "down" as const, showChart: true },
 ];
 
 export function MarketSummary() {
