@@ -41,7 +41,7 @@ export function AISummaryCard() {
       `}</style>
 
       <div
-        className="basis-[30%] grow-0 shrink-0 min-w-0 rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
+        className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
       >
         {/* Status indicator */}
         <div

@@ -29,12 +29,16 @@ export default function Home() {
       <main className="flex-1 pt-[100px] pb-8 px-8 max-w-[1440px] mx-auto w-full">
         <MarketSummary />
         <div className="mt-6 flex gap-3 items-start">
-          <AISummaryCard />
-          <TopMovers />
-        </div>
-        <div className="mt-3 flex gap-3 items-start">
-          <NewsCard />
-          <KolAttentionCard />
+          {/* Left column */}
+          <div className="flex flex-col gap-3 basis-[30%] shrink-0">
+            <AISummaryCard />
+            <NewsCard />
+          </div>
+          {/* Right column */}
+          <div className="flex flex-col gap-3 flex-1 min-w-0">
+            <TopMovers />
+            <KolAttentionCard />
+          </div>
         </div>
       </main>
       <Footer />
