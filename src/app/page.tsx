@@ -7,6 +7,7 @@ import { MarketSummary } from "@/components/MarketSummary";
 import { AISummaryCard } from "@/components/AISummaryCard";
 import { TopMovers } from "@/components/TopMovers";
 import { NewsCard } from "@/components/NewsCard";
+import { KolAttentionCard } from "@/components/KolAttentionCard";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true);
@@ -31,8 +32,9 @@ export default function Home() {
           <AISummaryCard />
           <TopMovers />
         </div>
-        <div className="mt-3">
+        <div className="mt-3 flex gap-3 items-start">
           <NewsCard />
+          <KolAttentionCard />
         </div>
       </main>
       <Footer />

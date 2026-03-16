@@ -52,25 +52,10 @@ const iconColors: Record<string, string> = {
 function CoinIcon({ ticker }: { ticker: string }) {
   return (
     <div
-      style={{
-        width: 22,
-        height: 22,
-        borderRadius: "50%",
-        backgroundColor: iconColors[ticker] || "#333",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
-        opacity: 0.85,
-      }}
+      className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 opacity-85"
+      style={{ backgroundColor: iconColors[ticker] || "#333" }}
     >
-      <span
-        style={{
-          fontSize: 9,
-          fontWeight: 700,
-          color: "rgba(255,255,255,0.9)",
-        }}
-      >
+      <span className="text-[length:9px] font-bold text-white/90">
         {ticker.slice(0, 2)}
       </span>
     </div>
@@ -85,45 +70,16 @@ function TimeToggle({
   onChange: (v: "1h" | "24h") => void;
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        borderRadius: 7,
-        backgroundColor: "var(--bg-primary)",
-        border: "1px solid var(--border-primary)",
-        padding: 1,
-        gap: 0,
-      }}
-    >
+    <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-primary)] p-px gap-0">
       {(["1h", "24h"] as const).map((option) => (
         <button
           key={option}
           onClick={() => onChange(option)}
-          style={{
-            padding: "2px 9px",
-            borderRadius: 6,
-            border: value === option
-              ? "1px solid var(--border-primary)"
-              : "1px solid transparent",
-            cursor: "pointer",
-            fontSize: "var(--font-size-text-xs)",
-            fontWeight:
-              value === option
-                ? "var(--font-weight-medium)"
-                : ("var(--font-weight-regular)" as unknown as number),
-            lineHeight: "var(--line-height-text-xs)",
-            color:
-              value === option
-                ? "var(--text-primary)"
-                : "var(--text-quaternary)",
-            backgroundColor:
-              value === option ? "var(--bg-secondary)" : "transparent",
-            boxShadow:
-              value === option
-                ? "0 1px 2px rgba(0,0,0,0.04)"
-                : "none",
-            transition: "all 0.15s ease",
-          }}
+          className={`px-[9px] py-0.5 rounded-[6px] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
+            value === option
+              ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+              : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
+          }`}
         >
           {option}
         </button>
@@ -150,42 +106,17 @@ function MoverCard({
     : "var(--fg-error-primary)";
 
   return (
-    <div
-      style={{
-        borderRadius: "var(--radius-xl)",
-        border: "1px solid var(--border-primary)",
-        backgroundColor: "var(--bg-secondary)",
-        padding: "var(--spacing-xl) var(--spacing-2xl) var(--spacing-2xl)",
-        boxShadow: "var(--shadow-card)",
-        flex: 1,
-        minWidth: 0,
-      }}
-    >
+    <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] pt-[var(--spacing-xl)] px-[var(--spacing-2xl)] pb-[var(--spacing-2xl)] shadow-[var(--shadow-card)] flex-1 min-w-0">
       {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: "var(--spacing-xl)",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "var(--font-size-text-md)",
-            fontWeight: "var(--font-weight-medium)" as unknown as number,
-            lineHeight: "var(--line-height-text-md)",
-            color: "var(--text-primary)",
-            margin: 0,
-          }}
-        >
+      <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
+        <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
           {title}
         </h2>
         <TimeToggle value={timeframe} onChange={setTimeframe} />
       </div>
 
       {/* List */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <div className="flex flex-col gap-0.5">
         {items.map((item, i) => (
           <div
             key={`${item.ticker}-${i}`}
@@ -193,31 +124,14 @@ function MoverCard({
             tabIndex={0}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
+            className="flex items-center gap-[var(--spacing-md)] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-150 ease-in-out"
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "var(--spacing-md)",
-              padding: "var(--spacing-md) var(--spacing-sm)",
-              borderRadius: "var(--radius-base)",
-              cursor: "pointer",
-              transition: "background-color 0.15s ease",
               backgroundColor:
                 hovered === i ? "var(--bg-active)" : "transparent",
             }}
           >
             {/* Rank */}
-            <span
-              style={{
-                width: 10,
-                textAlign: "right",
-                flexShrink: 0,
-                fontSize: "var(--font-size-text-sm)",
-                fontWeight: "var(--font-weight-regular)" as unknown as number,
-                lineHeight: "var(--line-height-text-sm)",
-                color: "var(--text-disabled)",
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
+            <span className="w-[10px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
               {item.rank}
             </span>
 
@@ -225,75 +139,26 @@ function MoverCard({
             <CoinIcon ticker={item.ticker} />
 
             {/* Name + Ticker */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "var(--spacing-md)",
-                flex: 1,
-                minWidth: 0,
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "var(--font-size-text-sm)",
-                  fontWeight:
-                    "var(--font-weight-regular)" as unknown as number,
-                  lineHeight: "var(--line-height-text-sm)",
-                  color: "var(--text-secondary)",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
+            <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
+              <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.name}
               </span>
-              <span
-                style={{
-                  fontSize: "var(--font-size-text-xs)",
-                  fontWeight:
-                    "var(--font-weight-regular)" as unknown as number,
-                  lineHeight: "var(--line-height-text-xs)",
-                  color: "var(--text-quaternary)",
-                  flexShrink: 0,
-                }}
-              >
+              <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0">
                 {item.ticker}
               </span>
             </div>
 
             {/* Price */}
-            <span
-              style={{
-                fontSize: "var(--font-size-text-sm)",
-                fontWeight: "var(--font-weight-regular)" as unknown as number,
-                lineHeight: "var(--line-height-text-sm)",
-                color: "var(--text-secondary)",
-                textAlign: "right",
-                flexShrink: 0,
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
+            <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] text-right shrink-0 tabular-nums">
               ${item.price < 1 ? item.price.toFixed(3) : item.price.toFixed(2)}
             </span>
 
             {/* Change */}
             <span
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                gap: 4,
-                width: 72,
-                flexShrink: 0,
-                fontSize: 13,
-                fontWeight: "var(--font-weight-medium)" as unknown as number,
-                lineHeight: "var(--line-height-text-sm)",
-                color: accentColor,
-                fontVariantNumeric: "tabular-nums",
-              }}
+              className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:13px] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums"
+              style={{ color: accentColor }}
             >
-              <span style={{ fontSize: 8, lineHeight: 1 }}>
+              <span className="text-[length:8px] leading-none">
                 {isGainer ? "▲" : "▼"}
               </span>
               {Math.abs(item.change).toFixed(2)}%
@@ -307,7 +172,7 @@ function MoverCard({
 
 export function TopMovers() {
   return (
-    <div style={{ display: "flex", gap: "var(--spacing-lg)", flex: 1, minWidth: 0 }}>
+    <div className="flex gap-[var(--spacing-lg)] flex-1 min-w-0">
       <MoverCard title="상승 종목" data={gainersData} type="gainer" />
       <MoverCard title="하락 종목" data={losersData} type="loser" />
     </div>
