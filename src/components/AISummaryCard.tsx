@@ -91,7 +91,7 @@ export function AISummaryCard() {
                 {point.title}
               </p>
               <p
-                className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[22px] text-[color:var(--text-tertiary)] m-0"
+                className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-tertiary)] m-0"
               >
                 {point.text}
               </p>

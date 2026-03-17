@@ -23,7 +23,7 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
             {navItems.map((item) => (
               <button
                 key={item.label}
-                className={`text-[14px] font-medium px-[2px] ${
+                className={`text-[length:var(--font-size-text-sm)] font-medium px-[2px] ${
                   item.active
                     ? "text-[var(--text-primary)]"
                     : "text-[var(--text-tertiary)]"
@@ -38,16 +38,16 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
         {/* Right: Actions + Avatar */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
-            <button className="p-[8px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
+            <button className="p-[var(--spacing-md)] rounded-[var(--radius-md)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
               <SearchIcon size={16} />
             </button>
             <button
               onClick={onThemeToggle}
-              className="p-[8px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
+              className="p-[var(--spacing-md)] rounded-[var(--radius-md)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
             >
               {isDark ? <MoonIcon size={16} /> : <SunIcon size={16} />}
             </button>
-            <button className="p-[8px] rounded-[8px] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
+            <button className="p-[var(--spacing-md)] rounded-[var(--radius-md)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">
               <BellIcon size={16} />
             </button>
           </div>

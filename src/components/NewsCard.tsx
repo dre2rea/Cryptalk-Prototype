@@ -129,7 +129,7 @@ export function NewsCard() {
                   className="pl-[54px] pr-[var(--spacing-lg)] pb-[var(--spacing-lg)] pt-[var(--spacing-xs)]"
                 >
                   <p
-                    className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[22px] text-[color:var(--text-tertiary)] m-0"
+                    className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-tertiary)] m-0"
                   >
                     {item.summary}
                   </p>

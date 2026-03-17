@@ -75,7 +75,7 @@ function TimeToggle({
         <button
           key={option}
           onClick={() => onChange(option)}
-          className={`px-[9px] py-0.5 rounded-[6px] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
+          className={`px-[9px] py-0.5 rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
             value === option
               ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
@@ -155,7 +155,7 @@ function MoverCard({
 
             {/* Change */}
             <span
-              className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:13px] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums"
+              className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
               style={{ color: accentColor }}
             >
               <span className="text-[length:8px] leading-none">

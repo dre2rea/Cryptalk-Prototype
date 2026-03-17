@@ -22,6 +22,7 @@
   --radius-xl: 12px;
 
   /* Font sizes - theme independent */
+  --font-size-text-2xs: 13px;
   --font-size-text-xs: 12px;
   --font-size-text-sm: 14px;
   --font-size-text-md: 16px;
@@ -32,6 +33,7 @@
 
   /* Line heights - theme independent */
   --line-height-text-xs: 18px;
+  --line-height-text-2sm: 22px;
   --line-height-text-sm: 20px;
   --line-height-text-md: 24px;
   --line-height-text-lg: 28px;

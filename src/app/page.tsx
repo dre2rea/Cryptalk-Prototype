@@ -8,6 +8,7 @@ import { AISummaryCard } from "@/components/AISummaryCard";
 import { TopMovers } from "@/components/TopMovers";
 import { NewsCard } from "@/components/NewsCard";
 import { KolAttentionCard } from "@/components/KolAttentionCard";
+import { PriceTable } from "@/components/PriceTable";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true);
@@ -30,15 +31,18 @@ export default function Home() {
         <MarketSummary />
         <div className="mt-6 flex gap-3 items-start">
           {/* Left column */}
-          <div className="flex flex-col gap-3 basis-[30%] shrink-0">
-            <AISummaryCard />
-            <NewsCard />
+          <div className="flex flex-col gap-3 basis-[65%] shrink-0">
+            <TopMovers />
+            <PriceTable />
           </div>
           {/* Right column */}
           <div className="flex flex-col gap-3 flex-1 min-w-0">
-            <TopMovers />
-            <KolAttentionCard />
+            <AISummaryCard />
+            <NewsCard />
           </div>
+        </div>
+        <div className="mt-6">
+          <KolAttentionCard />
         </div>
       </main>
       <Footer />
