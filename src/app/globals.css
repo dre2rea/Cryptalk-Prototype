@@ -64,7 +64,9 @@
   --fg-disabled: #969696;
   --fg-brand-primary: #0071e9;
   --fg-error-primary: #d82138;
+  --fg-error-rgb: 216, 33, 56;
   --fg-success-primary: #1a7f4c;
+  --fg-success-rgb: 26, 127, 76;
 
   /* Background colors */
   --bg-primary: #fcfbf9;
@@ -112,7 +114,9 @@
   --fg-disabled: #515151;
   --fg-brand-primary: #0071e9;
   --fg-error-primary: #e3435a;
+  --fg-error-rgb: 227, 67, 90;
   --fg-success-primary: #47cd89;
+  --fg-success-rgb: 71, 205, 137;
 
   /* Background colors */
   --bg-primary: #060606;

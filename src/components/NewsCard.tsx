@@ -72,30 +72,15 @@ export function NewsCard() {
 
   return (
     <div
-      style={{
-        width: "30%",
-        borderRadius: "var(--radius-xl)",
-        border: "1px solid var(--border-primary)",
-        backgroundColor: "var(--bg-secondary)",
-        padding: "var(--spacing-2xl)",
-        boxShadow: "var(--shadow-card)",
-      }}
+      className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
     >
       <h2
-        style={{
-          fontSize: "var(--font-size-text-md)",
-          fontWeight: "var(--font-weight-semibold)" as unknown as number,
-          lineHeight: "var(--line-height-text-md)",
-          color: "var(--text-primary)",
-          margin: 0,
-          marginBottom: "var(--spacing-xl)",
-          paddingLeft: 0,
-        }}
+        className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-semibold)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0 mb-[var(--spacing-xl)] pl-0"
       >
         오늘의 뉴스
       </h2>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <div className="flex flex-col gap-0.5">
         {newsData.map((item, i) => {
           const sc = sentimentConfig[item.sentiment];
           const isOpen = expanded === i;
@@ -104,73 +89,36 @@ export function NewsCard() {
             <div key={i}>
               <button
                 onClick={() => setExpanded(isOpen ? null : i)}
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "var(--spacing-lg)",
-                  padding: "var(--spacing-md) var(--spacing-sm)",
-                  borderRadius: "var(--radius-md)",
-                  border: "none",
-                  background: isOpen ? "var(--bg-active)" : "transparent",
-                  cursor: "pointer",
-                  textAlign: "left",
-                  transition: "background-color 0.15s ease",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isOpen)
-                    e.currentTarget.style.backgroundColor = "var(--bg-active)";
-                }}
-                onMouseLeave={(e) => {
-                  if (!isOpen)
-                    e.currentTarget.style.backgroundColor = "transparent";
-                }}
+                className={`w-full flex items-center gap-[var(--spacing-lg)] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-md)] border-none cursor-pointer text-left transition-colors duration-150 ease-in-out ${
+                  isOpen ? "bg-[var(--bg-active)]" : "bg-transparent hover:bg-[var(--bg-active)]"
+                }`}
               >
                 <span
+                  className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-xs)] py-[2px] px-[var(--spacing-md)] rounded-[var(--radius-sm)] shrink-0"
                   style={{
-                    fontSize: "var(--font-size-text-xs)",
-                    fontWeight: "var(--font-weight-medium)" as unknown as number,
-                    lineHeight: "var(--line-height-text-xs)",
                     color: `var(${sc.colorVar})`,
                     backgroundColor: `var(${sc.bgVar})`,
-                    padding: "2px var(--spacing-md)",
-                    borderRadius: "var(--radius-sm)",
-                    flexShrink: 0,
                   }}
                 >
                   {item.sentiment}
                 </span>
 
                 <span
-                  style={{
-                    fontSize: "var(--font-size-text-sm)",
-                    fontWeight: "var(--font-weight-medium)" as unknown as number,
-                    lineHeight: "var(--line-height-text-sm)",
-                    color: "var(--text-secondary)",
-                    flex: 1,
-                  }}
+                  className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] flex-1"
                 >
                   {item.keyword}
                 </span>
 
                 <span
-                  style={{
-                    fontSize: "var(--font-size-text-xs)",
-                    lineHeight: "var(--line-height-text-xs)",
-                    color: "var(--text-quaternary)",
-                    flexShrink: 0,
-                  }}
+                  className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0"
                 >
                   {item.time}
                 </span>
 
                 <span
-                  style={{
-                    fontSize: "var(--font-size-text-sm)",
-                    color: "var(--text-quaternary)",
-                    transition: "transform 0.2s ease",
-                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
+                  className={`text-[length:var(--font-size-text-sm)] text-[color:var(--text-quaternary)] transition-transform duration-200 ease-in-out ${
+                    isOpen ? "rotate-180" : "rotate-0"
+                  }`}
                 >
                   ▾
                 </span>
@@ -178,42 +126,20 @@ export function NewsCard() {
 
               {isOpen && (
                 <div
-                  style={{
-                    paddingLeft: 54,
-                    paddingRight: "var(--spacing-lg)",
-                    paddingBottom: "var(--spacing-lg)",
-                    paddingTop: "var(--spacing-xs)",
-                  }}
+                  className="pl-[54px] pr-[var(--spacing-lg)] pb-[var(--spacing-lg)] pt-[var(--spacing-xs)]"
                 >
                   <p
-                    style={{
-                      fontSize: "var(--font-size-text-sm)",
-                      fontWeight: "var(--font-weight-regular)" as unknown as number,
-                      lineHeight: "22px",
-                      color: "var(--text-tertiary)",
-                      margin: 0,
-                    }}
+                    className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[22px] text-[color:var(--text-tertiary)] m-0"
                   >
                     {item.summary}
                   </p>
                   <div
-                    style={{
-                      display: "flex",
-                      gap: "var(--spacing-sm)",
-                      marginTop: "var(--spacing-md)",
-                    }}
+                    className="flex gap-[var(--spacing-sm)] mt-[var(--spacing-md)]"
                   >
                     {item.coins.map((coin, ci) => (
                       <span
                         key={ci}
-                        style={{
-                          fontSize: "var(--font-size-text-xs)",
-                          lineHeight: "var(--line-height-text-xs)",
-                          color: "var(--text-quaternary)",
-                          padding: "1px var(--spacing-sm)",
-                          borderRadius: "var(--radius-sm)",
-                          backgroundColor: "var(--bg-quaternary)",
-                        }}
+                        className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] py-[1px] px-[var(--spacing-sm)] rounded-[var(--radius-sm)] bg-[var(--bg-quaternary)]"
                       >
                         {coin}
                       </span>

@@ -41,83 +41,39 @@ export function AISummaryCard() {
       `}</style>
 
       <div
-        style={{
-          flex: "0 0 30%",
-          minWidth: 0,
-          borderRadius: "var(--radius-xl)",
-          border: "1px solid var(--border-primary)",
-          backgroundColor: "var(--bg-secondary)",
-          padding: "var(--spacing-2xl)",
-          boxShadow: "var(--shadow-card)",
-        }}
+        className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
       >
         {/* Status indicator */}
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "var(--spacing-md)",
-            paddingBottom: "var(--spacing-xl)",
-            borderBottom: "1px solid var(--border-primary)",
-            marginBottom: "var(--spacing-2xl)",
-          }}
+          className="flex items-center gap-[var(--spacing-md)] pb-[var(--spacing-xl)] border-b border-[var(--border-primary)] mb-[var(--spacing-2xl)]"
         >
           <span
-            style={{
-              position: "relative",
-              flexShrink: 0,
-              width: 6,
-              height: 6,
-            }}
+            className="relative shrink-0 w-1.5 h-1.5"
           >
             <span
-              style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "9999px",
-                backgroundColor: `var(${sc.colorVar})`,
-              }}
+              className="absolute inset-0 rounded-full"
+              style={{ backgroundColor: `var(${sc.colorVar})` }}
             />
             {isActive && (
               <span
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "9999px",
-                  backgroundColor: `var(${sc.colorVar})`,
-                  animation: "ripple 2s ease-out infinite",
-                }}
+                className="absolute inset-0 rounded-full animate-[ripple_2s_ease-out_infinite]"
+                style={{ backgroundColor: `var(${sc.colorVar})` }}
               />
             )}
           </span>
           <span
-            style={{
-              fontSize: "var(--font-size-text-md)",
-              fontWeight: "var(--font-weight-bold)" as unknown as number,
-              lineHeight: "var(--line-height-text-md)",
-              color: `var(${sc.colorVar})`,
-            }}
+            className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-bold)] leading-[var(--line-height-text-md)]"
+            style={{ color: `var(${sc.colorVar})` }}
           >
             {marketStatus.label}
           </span>
           <span
-            style={{
-              fontSize: "var(--font-size-text-sm)",
-              fontWeight: "var(--font-weight-regular)" as unknown as number,
-              lineHeight: "var(--line-height-text-sm)",
-              color: "var(--text-tertiary)",
-            }}
+            className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-tertiary)]"
           >
             ({marketStatus.phase})
           </span>
           <span
-            style={{
-              marginLeft: "auto",
-              fontSize: "var(--font-size-text-xs)",
-              fontWeight: "var(--font-weight-regular)" as unknown as number,
-              lineHeight: "var(--line-height-text-xs)",
-              color: "var(--text-quaternary)",
-            }}
+            className="ml-auto text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)]"
           >
             2026.03.13 09:00 기준
           </span>
@@ -125,34 +81,17 @@ export function AISummaryCard() {
 
         {/* Summary points */}
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--spacing-2xl)",
-          }}
+          className="flex flex-col gap-[var(--spacing-2xl)]"
         >
           {summaryPoints.map((point, i) => (
             <div key={i}>
               <p
-                style={{
-                  fontSize: "var(--font-size-text-sm)",
-                  fontWeight: "var(--font-weight-semibold)" as unknown as number,
-                  lineHeight: "var(--line-height-text-sm)",
-                  color: "var(--text-primary)",
-                  margin: 0,
-                  marginBottom: "var(--spacing-sm)",
-                }}
+                className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-semibold)] leading-[var(--line-height-text-sm)] text-[color:var(--text-primary)] m-0 mb-[var(--spacing-sm)]"
               >
                 {point.title}
               </p>
               <p
-                style={{
-                  fontSize: "var(--font-size-text-sm)",
-                  fontWeight: "var(--font-weight-regular)" as unknown as number,
-                  lineHeight: "22px",
-                  color: "var(--text-tertiary)",
-                  margin: 0,
-                }}
+                className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[22px] text-[color:var(--text-tertiary)] m-0"
               >
                 {point.text}
               </p>
@@ -165,4 +104,3 @@ export function AISummaryCard() {
 }
 
 export default AISummaryCard;
-
