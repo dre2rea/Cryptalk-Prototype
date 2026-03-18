@@ -139,7 +139,7 @@ export function PriceTable() {
     }
   });
 
-  const displayCoins = sorted.slice(0, 8);
+  const displayCoins = sorted.slice(0, 7);
 
   return (
     <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
