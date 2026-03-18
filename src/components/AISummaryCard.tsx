@@ -1,7 +1,7 @@
 "use client";
 
 const marketStatus = {
-  label: "시장 약세",
+  label: "현황 : 약세",
   phase: "관망 국면",
   level: "bearish" as "bearish" | "neutral" | "bullish",
 };

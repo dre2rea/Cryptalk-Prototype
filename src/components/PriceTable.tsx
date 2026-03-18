@@ -110,8 +110,15 @@ export function PriceTable() {
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [hovered, setHovered] = useState<number | null>(null);
+  const [animateLayout, setAnimateLayout] = useState(true);
+
+  const handleTabChange = (t: Tab) => {
+    setAnimateLayout(false);
+    setTab(t);
+  };
 
   const handleSort = (field: SortField) => {
+    setAnimateLayout(true);
     if (sortField === field) {
       if (sortDir === "desc") setSortDir("asc");
       else {
@@ -153,7 +160,7 @@ export function PriceTable() {
           {(["all", "favorites"] as const).map((option) => (
             <button
               key={option}
-              onClick={() => setTab(option)}
+              onClick={() => handleTabChange(option)}
               className={`px-[9px] py-0.5 rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
                 tab === option
                   ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
@@ -182,25 +189,25 @@ export function PriceTable() {
           onClick={() => handleSort("1h")}
           className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
-          1H
+          1h
           <SortArrow active={sortField === "1h"} dir={sortDir} />
         </button>
         <button
           onClick={() => handleSort("1d")}
           className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
-          24H
+          24h
           <SortArrow active={sortField === "1d"} dir={sortDir} />
         </button>
         <button
           onClick={() => handleSort("7d")}
           className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
-          7D
+          7d
           <SortArrow active={sortField === "7d"} dir={sortDir} />
         </button>
         <span className="w-[80px] ml-[var(--spacing-md)] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
-          30D
+          30d
         </span>
       </div>
 
@@ -214,7 +221,7 @@ export function PriceTable() {
           return (
             <motion.div
               key={coin.id}
-              layout
+              layout={animateLayout}
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}

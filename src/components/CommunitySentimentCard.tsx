@@ -135,7 +135,7 @@ export function CommunitySentimentCard() {
               {/* Gauge bar */}
               <div className="mb-[var(--spacing-lg)]">
                 <div
-                  className="h-[4px] rounded-full flex gap-px overflow-hidden"
+                  className="h-[3px] rounded-full flex gap-px overflow-hidden"
                   style={{ background: "var(--bg-quaternary)" }}
                 >
                   <div
@@ -167,7 +167,7 @@ export function CommunitySentimentCard() {
                 {platform.topics.slice(0, 3).map((topic) => (
                   <span
                     key={topic}
-                    className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] leading-[1.4] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-[var(--radius-base)] whitespace-nowrap"
+                    className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[1.4] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-[var(--radius-base)] whitespace-nowrap"
                     style={{
                       background: "var(--bg-tertiary)",
                       color: "var(--text-quaternary)",
