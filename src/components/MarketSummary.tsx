@@ -16,7 +16,7 @@ const chartMetrics = [
 export function MarketSummary() {
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-[16px] leading-[24px] font-medium text-[var(--text-secondary)]">
+      <h2 className="text-[16px] leading-[24px] font-semibold text-[var(--text-secondary)]">
         시장 현황
       </h2>
       <div className="flex items-center gap-3">

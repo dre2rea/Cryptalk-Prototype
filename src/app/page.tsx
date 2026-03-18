@@ -10,6 +10,7 @@ import { NewsCard } from "@/components/NewsCard";
 import { KolAttentionCard } from "@/components/KolAttentionCard";
 import { PriceTable } from "@/components/PriceTable";
 import { CommunitySentimentCard } from "@/components/CommunitySentimentCard";
+import { TechnicalIndicatorCard } from "@/components/TechnicalIndicatorCard";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true);
@@ -46,7 +47,7 @@ export default function Home() {
 
         {/* 소셜 데이터 */}
         <section className="mt-16 flex flex-col gap-3">
-          <h2 className="text-[16px] leading-[24px] font-medium text-[var(--text-secondary)]">
+          <h2 className="text-[16px] leading-[24px] font-semibold text-[var(--text-secondary)]">
             소셜 데이터
           </h2>
           <div className="flex gap-3 items-stretch">
@@ -57,6 +58,14 @@ export default function Home() {
               <CommunitySentimentCard />
             </div>
           </div>
+        </section>
+
+        {/* 보조지표 */}
+        <section className="mt-16 flex flex-col gap-3">
+          <h2 className="text-[16px] leading-[24px] font-semibold text-[var(--text-secondary)]">
+            보조지표
+          </h2>
+          <TechnicalIndicatorCard />
         </section>
       </main>
       <Footer />
