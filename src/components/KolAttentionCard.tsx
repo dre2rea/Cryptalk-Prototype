@@ -166,7 +166,7 @@ export function KolAttentionCard() {
 
   // Plain render function (NOT a component) — prevents unmount/remount on re-render,
   // which would swallow onMouseLeave events and leave the tooltip stuck.
-  function renderTreeBlock(item: KolItem, idx: number, widthPct: number, height: number) {
+  function renderTreeBlock(item: KolItem, idx: number, widthPct: number) {
     const trend = getTrend(item.mentions, item.prevMentions);
     const isHovered = hovered === idx;
 
@@ -193,7 +193,6 @@ export function KolAttentionCard() {
         className="relative flex flex-col items-end justify-end p-[var(--spacing-lg)] text-left border border-white/[0.04] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-200 ease-in-out"
         style={{
           width: `${widthPct}%`,
-          height,
           backgroundColor: bgColor,
         }}
         onMouseEnter={() => handleBlockEnter(idx)}
@@ -227,7 +226,7 @@ export function KolAttentionCard() {
   return (
     <div
       ref={cardRef}
-      className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] relative flex-1 min-w-0"
+      className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] relative flex-1 min-w-0 flex flex-col"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
@@ -253,22 +252,22 @@ export function KolAttentionCard() {
 
       {/* Treemap */}
       <div
-        className="flex flex-col gap-[var(--spacing-xs)]"
+        className="flex flex-col gap-[var(--spacing-xs)] flex-1"
         onMouseLeave={() => {
           if (leaveTimer.current) clearTimeout(leaveTimer.current);
           setHovered(null);
         }}
       >
         {/* Top row */}
-        <div className="flex gap-[var(--spacing-xs)] h-[110px]">
+        <div className="flex gap-[var(--spacing-xs)] flex-[6]">
           {topRow.map((item, i) =>
-            renderTreeBlock(item, i, (item.mentions / topTotal) * 100, 110)
+            renderTreeBlock(item, i, (item.mentions / topTotal) * 100)
           )}
         </div>
         {/* Bottom row */}
-        <div className="flex gap-[var(--spacing-xs)] h-[80px]">
+        <div className="flex gap-[var(--spacing-xs)] flex-[4]">
           {bottomRow.map((item, i) =>
-            renderTreeBlock(item, i + 3, (item.mentions / bottomTotal) * 100, 80)
+            renderTreeBlock(item, i + 3, (item.mentions / bottomTotal) * 100)
           )}
         </div>
       </div>
