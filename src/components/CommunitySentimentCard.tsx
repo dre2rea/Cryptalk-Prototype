@@ -121,7 +121,7 @@ export function CommunitySentimentCard() {
             <div className="flex-1 min-w-0">
               {/* Name + sentiment badge */}
               <div className="flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-md)]">
-                <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-semibold)] text-[color:var(--text-tertiary)]">
+                <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-semibold)] text-[color:var(--text-primary)]">
                   {platform.name}
                 </span>
                 <span

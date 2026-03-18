@@ -291,7 +291,7 @@ export function KolAttentionCard() {
               className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-primary)] px-[var(--spacing-lg)] py-[var(--spacing-lg)] z-30 pointer-events-none"
               style={{
                 left: mousePos.x,
-                top: mousePos.y - 110,
+                top: mousePos.y - 114,
               }}
             >
               <div className="flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-md)]">
