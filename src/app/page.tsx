@@ -32,7 +32,7 @@ export default function Home() {
       <main className="flex-1 pt-[100px] pb-8 px-8 max-w-[1440px] mx-auto w-full">
         {/* 시장 현황 */}
         <MarketSummary />
-        <div className="mt-6 flex gap-3 items-start">
+        <div className="mt-3 flex gap-3 items-start">
           {/* Left column */}
           <div className="flex flex-col gap-3 basis-[65%] shrink-0">
             <TopMovers />

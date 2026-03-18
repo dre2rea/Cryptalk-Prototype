@@ -221,7 +221,7 @@ const cardConfigs: Record<CardType, CardConfig> = {
     toggleOptions: ["급증", "급감"],
     getData: (mode) => (mode === "급증" ? oiSurgeCoins : oiDropCoins),
     formatValue: (item) => (
-      <div className="flex items-center gap-[var(--spacing-sm)] shrink-0">
+      <div className="flex items-center gap-[var(--spacing-lg)] shrink-0">
         <OiSignal oiChange={item.value} priceChange={item.priceChange!} />
         <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums text-[color:var(--text-secondary)] text-right">
           {item.value > 0 ? "+" : ""}{item.value}%
@@ -261,7 +261,7 @@ function IndicatorCard({ type }: { type: CardType }) {
     <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] pt-[var(--spacing-xl)] px-[var(--spacing-2xl)] pb-[var(--spacing-2xl)] shadow-[var(--shadow-card)] flex-1 min-w-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
-        <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
+        <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] text-[color:var(--text-primary)] m-0">
           {config.title}
         </h2>
         <ModeToggle options={config.toggleOptions} value={mode} onChange={setMode} />

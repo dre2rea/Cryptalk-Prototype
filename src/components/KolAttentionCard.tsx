@@ -205,7 +205,7 @@ export function KolAttentionCard() {
         <div className="w-full mt-auto flex flex-col items-start gap-[var(--spacing-xs)]">
           <CoinIcon ticker={item.ticker} size={18} />
           <div className="flex items-center gap-[var(--spacing-sm)]">
-            <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-semibold)] text-[color:var(--text-primary)]">
+            <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)]">
               {item.name}
             </span>
             <span

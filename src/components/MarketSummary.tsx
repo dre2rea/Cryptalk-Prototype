@@ -25,7 +25,7 @@ export function MarketSummary() {
             <MetricItem key={m.label} {...m} />
           ))}
         </div>
-        <div className="w-[0.5px] h-[25px] bg-[var(--border-secondary)]" />
+        <div className="shrink-0 h-[32px]" style={{ width: 1, background: 'var(--border-primary)' }} />
         <div className="flex gap-[10px]">
           {chartMetrics.map((m) => (
             <MetricItem key={m.label} {...m} />
