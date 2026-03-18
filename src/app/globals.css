@@ -64,6 +64,7 @@
   --fg-secondary: #3b3f46;
   --fg-tertiary: #535862;
   --fg-disabled: #969696;
+  --fg-neutral-primary: #c8c8c8;
   --fg-brand-primary: #0071e9;
   --fg-error-primary: #d82138;
   --fg-error-rgb: 216, 33, 56;
@@ -114,6 +115,7 @@
   --fg-secondary: #969696;
   --fg-tertiary: #818181;
   --fg-disabled: #515151;
+  --fg-neutral-primary: #4a4a4a;
   --fg-brand-primary: #0071e9;
   --fg-error-primary: #e3435a;
   --fg-error-rgb: 227, 67, 90;

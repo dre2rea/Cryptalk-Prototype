@@ -135,28 +135,28 @@ export function CommunitySentimentCard() {
               {/* Gauge bar */}
               <div className="mb-[var(--spacing-lg)]">
                 <div
-                  className="h-[3px] rounded-full flex gap-px overflow-hidden"
+                  className="h-[4px] rounded-full flex gap-px overflow-hidden"
                   style={{ background: "var(--bg-quaternary)" }}
                 >
                   <div
                     className="h-full rounded-l-full"
                     style={{
                       width: `${platform.positive}%`,
-                      background: `rgba(var(--fg-success-rgb), 0.7)`,
-                    }}
+                      background: `rgba(var(--fg-success-rgb), 0.5)`,
+                 }}
                   />
                   <div
                     className="h-full"
                     style={{
                       width: `${platform.neutral}%`,
-                      background: "var(--text-disabled)",
+                      background: "var(--fg-neutral-primary)",
                     }}
                   />
                   <div
                     className="h-full rounded-r-full"
                     style={{
                       width: `${platform.negative}%`,
-                      background: `rgba(var(--fg-error-rgb), 0.7)`,
+                      background: `rgba(var(--fg-error-rgb), 0.5)`,
                     }}
                   />
                 </div>
