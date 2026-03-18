@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="h-[52px] bg-[var(--bg-primary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
-        <span className="text-[13px] text-[var(--text-quaternary)]">
+        <span className="text-[length:var(--font-size-text-2xs)] text-[var(--text-quaternary)]">
           © 2026 Coin Digest. All rights reserved.
         </span>
         <div className="flex items-center gap-8">
@@ -13,7 +13,7 @@ export function Footer() {
             {leftLinks.map((link) => (
               <button
                 key={link}
-                className="text-[13px] text-[var(--text-quaternary)] hover:text-[var(--text-tertiary)] transition-colors"
+                className="text-[length:var(--font-size-text-2xs)] text-[var(--text-quaternary)] hover:text-[var(--text-tertiary)] transition-colors"
               >
                 {link}
               </button>
@@ -23,7 +23,7 @@ export function Footer() {
             {rightLinks.map((link) => (
               <button
                 key={link}
-                className="text-[13px] text-[var(--text-quaternary)] hover:text-[var(--text-tertiary)] transition-colors"
+                className="text-[length:var(--font-size-text-2xs)] text-[var(--text-quaternary)] hover:text-[var(--text-tertiary)] transition-colors"
               >
                 {link}
               </button>

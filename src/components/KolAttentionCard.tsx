@@ -239,7 +239,7 @@ export function KolAttentionCard() {
             <button
               key={label}
               onClick={() => handleRegionSwitch(label)}
-              className={`px-[9px] py-[2px] rounded-[6px] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
+              className={`px-[9px] py-[2px] rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
                 kolRegion === label
                   ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"

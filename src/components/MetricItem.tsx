@@ -19,7 +19,7 @@ function Change({ changePercent, trend }: { changePercent: number; trend: "up" |
       <span className="size-[10px] flex items-center justify-center" style={{ color }}>
         {isUp ? <ArrowUpIcon size={10} className="text-inherit" /> : <ArrowDownIcon size={10} className="text-inherit" />}
       </span>
-      <span className="text-[12px] leading-[18px] font-medium whitespace-nowrap" style={{ color }}>
+      <span className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] font-medium whitespace-nowrap" style={{ color }}>
         {changePercent}%
       </span>
     </div>
@@ -32,7 +32,7 @@ function Badge({ label, variant }: { label: string; variant: "danger" | "success
     : "bg-[var(--badge-success-bg)] text-[var(--fg-success-primary)]";
 
   return (
-    <span className={`text-[12px] leading-[18px] font-medium px-[6px] py-[2px] rounded-[4px] whitespace-nowrap ${styles}`}>
+    <span className={`text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] font-medium px-[var(--spacing-sm)] py-[var(--spacing-xxs)] rounded-[var(--radius-sm)] whitespace-nowrap ${styles}`}>
       {label}
     </span>
   );
@@ -41,7 +41,7 @@ function Badge({ label, variant }: { label: string; variant: "danger" | "success
 export function MetricItem({ label, value, changePercent, trend, badge, badgeVariant, showChart }: MetricItemProps) {
   if (showChart) {
     return (
-      <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[var(--radius-lg)] px-4 py-3 flex flex-col gap-[6px] w-[216px] h-[86px] shrink-0 shadow-[var(--shadow-card)]">
+      <div className="bg-[var(--bg-secondary)] border border-[var(--border-secondary)] rounded-[var(--radius-lg)] px-4 py-3 flex flex-col gap-[var(--spacing-sm)] w-[216px] h-[86px] shrink-0 shadow-[var(--shadow-card)]">
         <div className="flex items-center justify-between">
           <p className="text-[12px] leading-[24px] text-[var(--text-tertiary)] whitespace-nowrap">
             {label}
@@ -49,7 +49,7 @@ export function MetricItem({ label, value, changePercent, trend, badge, badgeVar
           <Change changePercent={changePercent} trend={trend} />
         </div>
         <div className="flex items-center justify-between flex-1 min-h-0">
-          <p className="text-[18px] leading-[38px] font-semibold text-[var(--text-primary)] whitespace-nowrap">
+          <p className="text-[length:var(--font-size-text-lg)] leading-[var(--line-height-display-sm)] font-semibold text-[var(--text-primary)] whitespace-nowrap">
             {value}
           </p>
           <div className="w-[72px] h-[32px] flex-shrink-0">
@@ -66,7 +66,7 @@ export function MetricItem({ label, value, changePercent, trend, badge, badgeVar
         {label}
       </p>
       <div className="flex items-center justify-between">
-        <p className="text-[18px] leading-[38px] font-semibold text-[var(--text-primary)] whitespace-nowrap">
+        <p className="text-[length:var(--font-size-text-lg)] leading-[var(--line-height-display-sm)] font-semibold text-[var(--text-primary)] whitespace-nowrap">
           {value}
         </p>
         {badge && badgeVariant ? (
