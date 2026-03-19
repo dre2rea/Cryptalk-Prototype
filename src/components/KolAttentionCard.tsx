@@ -170,15 +170,9 @@ export function KolAttentionCard() {
     const trend = getTrend(item.mentions, item.prevMentions);
     const isHovered = hovered === idx;
 
-    const hoverBoost = isHovered ? 0.08 : 0;
-    let bgColor;
-    if (trend.dir === "up") {
-      bgColor = `rgba(var(--fg-success-rgb), ${0.12 + trend.pct / 400 + hoverBoost})`;
-    } else if (trend.dir === "down") {
-      bgColor = `rgba(var(--fg-error-rgb), ${0.10 + trend.pct / 400 + hoverBoost})`;
-    } else {
-      bgColor = `rgba(255,255,255,${0.04 + hoverBoost})`;
-    }
+    const bgColor = isHovered
+      ? "var(--kol-block-bg-hover)"
+      : "var(--kol-block-bg)";
 
     const trendColor =
       trend.dir === "up"
@@ -320,7 +314,7 @@ export function KolAttentionCard() {
         })()}
 
       <p className="text-[11px] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] m-0 mt-[var(--spacing-lg)]">
-        KOL {kolRegion === "국내" ? "32" : "55"}명 기준 · 지난 24시간
+        국내외 KOL {kolRegion === "국내" ? "32" : "55"}명 · 지난 24시간 언급량 기준
       </p>
     </div>
   );
