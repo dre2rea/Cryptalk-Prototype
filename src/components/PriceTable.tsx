@@ -8,31 +8,15 @@ type SortField = "price" | "1h" | "1d" | "7d" | null;
 type SortDir = "asc" | "desc";
 type Tab = "all" | "favorites";
 
-const iconColors: Record<string, string> = {
-  BTC: "#F7931A",
-  ETH: "#627EEA",
-  XRP: "#23292F",
-  SOL: "#9945FF",
-  BNB: "#F3BA2F",
-  DOGE: "#C2A633",
-  ADA: "#0033AD",
-  DOT: "#E6007A",
-  LINK: "#2A5ADA",
-  AVAX: "#E84142",
-};
-
 const favoriteIds = new Set(["bitcoin", "ethereum", "solana", "ripple"]);
 
-function CoinIcon({ symbol }: { symbol: string }) {
+function CoinIcon({ symbol, image }: { symbol: string; image: string }) {
   return (
-    <div
-      className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 opacity-85"
-      style={{ backgroundColor: iconColors[symbol] || "#333" }}
-    >
-      <span className="text-[length:9px] font-bold text-white/90">
-        {symbol.slice(0, 2)}
-      </span>
-    </div>
+    <img
+      src={image}
+      alt={symbol}
+      className="w-[22px] h-[22px] rounded-full shrink-0 object-cover"
+    />
   );
 }
 
@@ -312,7 +296,7 @@ export function PriceTable() {
 
               {/* Coin name */}
               <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
-                <CoinIcon symbol={coin.symbol} />
+                <CoinIcon symbol={coin.symbol} image={coin.image} />
                 <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
                   {coin.nameKr}
                 </span>

@@ -5,11 +5,11 @@ import { useState } from "react";
 // ─── Mock Data ──────────────────────────────────────────────────────────────
 
 const volumeSurgeCoins = [
-  { rank: 1, name: "그래비티", ticker: "G", value: 20354.62 },
-  { rank: 2, name: "엑스와이오", ticker: "XYO", value: 2339.37 },
-  { rank: 3, name: "디젠", ticker: "DEGEN", value: 1659.77 },
-  { rank: 4, name: "바나", ticker: "VANA", value: 1167.03 },
-  { rank: 5, name: "아짓", ticker: "AZIT", value: 1141.11 },
+  { rank: 1, name: "페페", ticker: "PEPE", value: 20354.62 },
+  { rank: 2, name: "인젝티브", ticker: "INJ", value: 2339.37 },
+  { rank: 3, name: "수이", ticker: "SUI", value: 1659.77 },
+  { rank: 4, name: "아비트럼", ticker: "ARB", value: 1167.03 },
+  { rank: 5, name: "체인링크", ticker: "LINK", value: 1141.11 },
 ];
 
 const volumeDropCoins = [
@@ -21,11 +21,11 @@ const volumeDropCoins = [
 ];
 
 const oversoldCoins = [
-  { rank: 1, name: "피크", ticker: "PEAQ", value: 16.54 },
-  { rank: 2, name: "오아시스", ticker: "OAS", value: 19.0 },
-  { rank: 3, name: "얼라이언스", ticker: "AL", value: 21.14 },
-  { rank: 4, name: "파이트", ticker: "FIGHT", value: 22.38 },
-  { rank: 5, name: "인프라레드", ticker: "IR", value: 24.16 },
+  { rank: 1, name: "폴카닷", ticker: "DOT", value: 16.54 },
+  { rank: 2, name: "아발란체", ticker: "AVAX", value: 19.0 },
+  { rank: 3, name: "체인링크", ticker: "LINK", value: 21.14 },
+  { rank: 4, name: "이더리움", ticker: "ETH", value: 22.38 },
+  { rank: 5, name: "아비트럼", ticker: "ARB", value: 24.16 },
 ];
 
 const overboughtCoins = [
@@ -70,25 +70,31 @@ const fundingLowCoins = [
 
 // ─── Icon Colors ────────────────────────────────────────────────────────────
 
-const iconColors: Record<string, string> = {
-  G: "#FF6B6B", XYO: "#7C5CFC", DEGEN: "#A29BFE", VANA: "#6C5CE7",
-  AZIT: "#2D3436", PEAQ: "#6C5CE7", OAS: "#00B894", AL: "#55EFC4",
-  FIGHT: "#FF7675", IR: "#E17055", SOL: "#9945FF", SUI: "#4DA2FF",
-  BTC: "#F7931A", DOGE: "#C2A633", XRP: "#23292F", ETH: "#627EEA",
-  INJ: "#00F2FE", PEPE: "#3CB043", ARB: "#2D374B", AVAX: "#E84142",
+const coinImages: Record<string, string> = {
+  BTC: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
+  ETH: "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
+  XRP: "https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png",
+  SOL: "https://assets.coingecko.com/coins/images/4128/small/solana.png",
+  SUI: "https://assets.coingecko.com/coins/images/26375/small/sui_asset.jpeg",
+  DOGE: "https://assets.coingecko.com/coins/images/5/small/dogecoin.png",
+  INJ: "https://assets.coingecko.com/coins/images/12882/small/Secondary_Symbol.png",
+  PEPE: "https://assets.coingecko.com/coins/images/29850/small/pepe-token.jpeg",
+  AVAX: "https://assets.coingecko.com/coins/images/12559/small/Avalanche_Circle_RedWhite_Trans.png",
+  ARB: "https://assets.coingecko.com/coins/images/16547/small/photo_2023-03-29_21.47.00.jpeg",
+  LINK: "https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png",
+  DOT: "https://assets.coingecko.com/coins/images/12171/small/polkadot.png",
 };
 
 // ─── Shared Components ──────────────────────────────────────────────────────
 
 function CoinIcon({ ticker }: { ticker: string }) {
+  const src = coinImages[ticker];
+  if (src) {
+    return <img src={src} alt={ticker} className="w-[22px] h-[22px] rounded-full shrink-0 object-cover" />;
+  }
   return (
-    <div
-      className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 opacity-85"
-      style={{ backgroundColor: iconColors[ticker] || "#333" }}
-    >
-      <span className="text-[length:9px] font-bold text-white/90">
-        {ticker.slice(0, 2)}
-      </span>
+    <div className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 bg-[#333]">
+      <span className="text-[length:9px] font-bold text-white/90">{ticker.slice(0, 2)}</span>
     </div>
   );
 }

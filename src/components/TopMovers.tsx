@@ -36,28 +36,29 @@ const losersData = {
   ],
 };
 
-const iconColors: Record<string, string> = {
-  XRP: "#23292F",
-  MON: "#836EF9",
-  STX: "#5546FF",
-  INJ: "#00F2FE",
-  LINK: "#2A5ADA",
-  WLD: "#1A1A2E",
-  APT: "#2DD8A3",
-  DOGE: "#C2A633",
-  ETH: "#627EEA",
-  DOT: "#E6007A",
+const coinImages: Record<string, string> = {
+  BTC: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
+  ETH: "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
+  XRP: "https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png",
+  SOL: "https://assets.coingecko.com/coins/images/4128/small/solana.png",
+  DOGE: "https://assets.coingecko.com/coins/images/5/small/dogecoin.png",
+  DOT: "https://assets.coingecko.com/coins/images/12171/small/polkadot.png",
+  LINK: "https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png",
+  INJ: "https://assets.coingecko.com/coins/images/12882/small/Secondary_Symbol.png",
+  STX: "https://assets.coingecko.com/coins/images/2069/small/Stacks_logo_full.png",
+  MON: "https://assets.coingecko.com/coins/images/52490/small/monad.jpg",
+  WLD: "https://assets.coingecko.com/coins/images/31069/small/worldcoin.jpeg",
+  APT: "https://assets.coingecko.com/coins/images/26455/small/aptos_round.png",
 };
 
 function CoinIcon({ ticker }: { ticker: string }) {
+  const src = coinImages[ticker];
+  if (src) {
+    return <img src={src} alt={ticker} className="w-[22px] h-[22px] rounded-full shrink-0 object-cover" />;
+  }
   return (
-    <div
-      className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 opacity-85"
-      style={{ backgroundColor: iconColors[ticker] || "#333" }}
-    >
-      <span className="text-[length:9px] font-bold text-white/90">
-        {ticker.slice(0, 2)}
-      </span>
+    <div className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 bg-[#333]">
+      <span className="text-[length:9px] font-bold text-white/90">{ticker.slice(0, 2)}</span>
     </div>
   );
 }
