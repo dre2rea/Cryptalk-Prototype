@@ -2,7 +2,6 @@ import { SearchIcon, MoonIcon, SunIcon, BellIcon, UserIcon } from "./icons";
 
 const navItems = [
   { label: "시장 현황", active: true },
-  { label: "커뮤니티", active: false },
 ];
 
 interface HeaderProps {
@@ -17,7 +16,7 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">
           <span className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight">
-            Coin Digest
+            CRYPTALK
           </span>
           <nav className="flex items-center gap-4">
             {navItems.map((item) => (
