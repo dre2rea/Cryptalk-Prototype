@@ -235,7 +235,7 @@ export function KolAttentionCard() {
             trend.dir === "up" ? "var(--fg-success-primary)" : trend.dir === "down" ? "var(--fg-error-primary)" : "var(--text-disabled)";
           return (
             <div
-              className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-secondary)] px-[var(--spacing-md)] py-[var(--spacing-md)] z-30 pointer-events-none overflow-hidden"
+              className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-secondary)] px-[var(--spacing-md)] py-[var(--spacing-md)] z-30 pointer-events-none overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
               style={{
                 left: mousePos.x,
                 top: mousePos.y - 140,

@@ -174,18 +174,28 @@ export function NewsCard() {
                 </span>
 
                 <span
-                  className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0"
+                  className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0 ml-[2px]"
                 >
                   {item.time}
                 </span>
 
-                <span
-                  className={`text-[length:var(--font-size-text-sm)] text-[color:var(--text-quaternary)] transition-transform duration-200 ease-in-out ${
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className={`shrink-0 transition-transform duration-200 ease-in-out ${
                     isOpen ? "rotate-180" : "rotate-0"
                   }`}
                 >
-                  ▾
-                </span>
+                  <path
+                    d="M4 6L8 10L12 6"
+                    stroke="var(--text-quaternary)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
 
               {isOpen && (
