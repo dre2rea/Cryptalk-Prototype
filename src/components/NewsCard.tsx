@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const newsData = [
   {
@@ -134,7 +135,7 @@ export function NewsCard() {
                     {item.summary}
                   </p>
                   <div
-                    className="flex gap-[var(--spacing-sm)] mt-[var(--spacing-md)]"
+                    className="flex items-center gap-[var(--spacing-sm)] mt-[var(--spacing-md)]"
                   >
                     {item.coins.map((coin, ci) => (
                       <span
@@ -144,6 +145,12 @@ export function NewsCard() {
                         {coin}
                       </span>
                     ))}
+                    <Link
+                      href={i === 0 ? "/news/iran" : "#"}
+                      className="text-[length:var(--font-size-text-sm)] leading-[var(--line-height-text-xs)] text-blue-600 dark:text-blue-400 no-underline hover:underline ml-[var(--spacing-xs)]"
+                    >
+                      더보기
+                    </Link>
                   </div>
                 </div>
               )}
