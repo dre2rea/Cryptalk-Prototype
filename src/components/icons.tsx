@@ -113,13 +113,13 @@ export function ArrowDownIcon({ className = "", size = 14 }: IconProps) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 10 10"
+      viewBox="0 0 12 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
       <path
-        d="M5 8L1 2h8L5 8z"
+        d="M6 7L0.5 1h11L6 7z"
         fill="currentColor"
       />
     </svg>
@@ -131,13 +131,13 @@ export function ArrowUpIcon({ className = "", size = 14 }: IconProps) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 10 10"
+      viewBox="0 0 12 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
       <path
-        d="M5 2L9 8H1L5 2z"
+        d="M6 1L11.5 7H0.5L6 1z"
         fill="currentColor"
       />
     </svg>

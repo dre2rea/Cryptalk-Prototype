@@ -8,57 +8,117 @@ type SortField = "price" | "1h" | "1d" | "7d" | null;
 type SortDir = "asc" | "desc";
 type Tab = "all" | "favorites";
 
-const iconColors: Record<string, string> = {
-  BTC: "#F7931A",
-  ETH: "#627EEA",
-  XRP: "#23292F",
-  SOL: "#9945FF",
-  BNB: "#F3BA2F",
-  DOGE: "#C2A633",
-  ADA: "#0033AD",
-  DOT: "#E6007A",
-  LINK: "#2A5ADA",
-  AVAX: "#E84142",
-};
-
 const favoriteIds = new Set(["bitcoin", "ethereum", "solana", "ripple"]);
 
-function CoinIcon({ symbol }: { symbol: string }) {
+function CoinIcon({ symbol, image }: { symbol: string; image: string }) {
   return (
-    <div
-      className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 opacity-85"
-      style={{ backgroundColor: iconColors[symbol] || "#333" }}
-    >
-      <span className="text-[length:9px] font-bold text-white/90">
-        {symbol.slice(0, 2)}
-      </span>
-    </div>
+    <img
+      src={image}
+      alt={symbol}
+      className="w-[22px] h-[22px] rounded-full shrink-0 object-cover"
+    />
   );
 }
 
-function Sparkline({ data, color }: { data: number[]; color: string }) {
+function Sparkline({ data }: { data: number[] }) {
   const min = Math.min(...data);
   const max = Math.max(...data);
   const range = max - min || 1;
   const w = 80;
-  const h = 24;
-  const points = data
-    .map((v, i) => {
-      const x = (i / (data.length - 1)) * w;
-      const y = h - ((v - min) / range) * h;
-      return `${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(" ");
+  const h = 28;
+  const pad = 2; // vertical padding so strokes aren't clipped
+
+  const baseline = data[0]; // starting price as baseline
+  const baselineY = pad + (h - 2 * pad) - ((baseline - min) / range) * (h - 2 * pad);
+
+  const pts = data.map((v, i) => ({
+    x: (i / (data.length - 1)) * w,
+    y: pad + (h - 2 * pad) - ((v - min) / range) * (h - 2 * pad),
+  }));
+
+  const points = pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+
+  // closed polygon that hugs the baseline for area fill
+  const firstX = pts[0].x;
+  const lastX = pts[pts.length - 1].x;
+  const areaPath = `M${firstX},${baselineY} ` +
+    pts.map((p) => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ") +
+    ` L${lastX},${baselineY} Z`;
+
+  // unique id for clip paths & gradients
+  const uid = `sp-${data.slice(0, 3).map((d) => Math.round(d * 10)).join("-")}`;
 
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="shrink-0">
+      <defs>
+        {/* Clip region above baseline (green) */}
+        <clipPath id={`${uid}-up`}>
+          <rect x="0" y="0" width={w} height={baselineY} />
+        </clipPath>
+        {/* Clip region below baseline (red) */}
+        <clipPath id={`${uid}-down`}>
+          <rect x="0" y={baselineY} width={w} height={h - baselineY} />
+        </clipPath>
+        {/* Green gradient: top (line) → baseline (fade out) */}
+        <linearGradient id={`${uid}-gup`} gradientUnits="userSpaceOnUse" x1="0" y1={0} x2="0" y2={baselineY}>
+          <stop offset="0%" stopColor="var(--fg-success-primary)" stopOpacity={0.6} />
+          <stop offset="50%" stopColor="var(--fg-success-primary)" stopOpacity={0.2} />
+          <stop offset="100%" stopColor="var(--fg-success-primary)" stopOpacity={0} />
+        </linearGradient>
+        {/* Red gradient: bottom (line) → baseline (fade out) */}
+        <linearGradient id={`${uid}-gdown`} gradientUnits="userSpaceOnUse" x1="0" y1={h} x2="0" y2={baselineY}>
+          <stop offset="0%" stopColor="var(--fg-error-primary)" stopOpacity={0.6} />
+          <stop offset="50%" stopColor="var(--fg-error-primary)" stopOpacity={0.2} />
+          <stop offset="100%" stopColor="var(--fg-error-primary)" stopOpacity={0} />
+        </linearGradient>
+      </defs>
+
+      {/* Green area fill (above baseline) */}
+      <path
+        d={areaPath}
+        fill={`url(#${uid}-gup)`}
+        clipPath={`url(#${uid}-up)`}
+      />
+
+      {/* Red area fill (below baseline) */}
+      <path
+        d={areaPath}
+        fill={`url(#${uid}-gdown)`}
+        clipPath={`url(#${uid}-down)`}
+      />
+
+      {/* Baseline dotted line */}
+      <line
+        x1="0"
+        y1={baselineY}
+        x2={w}
+        y2={baselineY}
+        stroke="var(--text-disabled)"
+        strokeWidth="0.75"
+        strokeDasharray="2 2"
+        opacity={0.4}
+      />
+
+      {/* Green line (above baseline) */}
       <polyline
         points={points}
         fill="none"
-        stroke={color}
-        strokeWidth="1.5"
+        stroke="var(--fg-success-primary)"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
+        clipPath={`url(#${uid}-up)`}
+      />
+
+      {/* Red line (below baseline) */}
+      <polyline
+        points={points}
+        fill="none"
+        stroke="var(--fg-error-primary)"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        clipPath={`url(#${uid}-down)`}
       />
     </svg>
   );
@@ -79,7 +139,7 @@ function SortArrow({
           color:
             active && dir === "asc"
               ? "var(--text-primary)"
-              : "var(--text-disabled)",
+              : "var(--border-primary)",
         }}
       >
         ▲
@@ -90,7 +150,7 @@ function SortArrow({
           color:
             active && dir === "desc"
               ? "var(--text-primary)"
-              : "var(--text-disabled)",
+              : "var(--border-primary)",
         }}
       >
         ▼
@@ -150,20 +210,20 @@ export function PriceTable() {
   const displayCoins = sorted.slice(0, 7);
 
   return (
-    <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
+    <div className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
           가격 정보
         </h2>
-        <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-primary)] p-px gap-0">
+        <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-secondary)] p-px gap-0">
           {(["all", "favorites"] as const).map((option) => (
             <button
               key={option}
               onClick={() => handleTabChange(option)}
               className={`px-[9px] py-0.5 rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
                 tab === option
-                  ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                  ? "border border-[var(--border-secondary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
               }`}
             >
@@ -174,10 +234,12 @@ export function PriceTable() {
       </div>
 
       {/* Table Header */}
-      <div className="flex items-center gap-[var(--spacing-md)] px-[var(--spacing-sm)] pb-[var(--spacing-md)] border-b border-[var(--border-primary)]">
+      <div className="flex items-center gap-[16px] px-[var(--spacing-sm)] pb-[var(--spacing-md)] border-b border-[var(--border-secondary)]">
         <span className="flex-1 min-w-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
           종목
         </span>
+        {/* Spacer matching rank column */}
+        <span className="w-[10px] shrink-0" />
         <button
           onClick={() => handleSort("price")}
           className="w-[80px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
@@ -206,7 +268,7 @@ export function PriceTable() {
           7d
           <SortArrow active={sortField === "7d"} dir={sortDir} />
         </button>
-        <span className="w-[80px] ml-[var(--spacing-md)] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
+        <span className="w-[80px] ml-[var(--spacing-lg)] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
           30d
         </span>
       </div>
@@ -214,10 +276,6 @@ export function PriceTable() {
       {/* Table Body */}
       <div className="flex flex-col gap-0.5 mt-0.5">
         {displayCoins.map((coin, i) => {
-          const sparklineColor = coin.change30d >= 0
-            ? "var(--fg-success-primary)"
-            : "var(--fg-error-primary)";
-
           return (
             <motion.div
               key={coin.id}
@@ -225,7 +283,7 @@ export function PriceTable() {
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              className="flex items-center gap-[var(--spacing-md)] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-150 ease-in-out"
+              className="flex items-center gap-[16px] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-150 ease-in-out"
               style={{
                 backgroundColor:
                   hovered === i ? "var(--bg-active)" : "transparent",
@@ -238,7 +296,7 @@ export function PriceTable() {
 
               {/* Coin name */}
               <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
-                <CoinIcon symbol={coin.symbol} />
+                <CoinIcon symbol={coin.symbol} image={coin.image} />
                 <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
                   {coin.nameKr}
                 </span>
@@ -293,7 +351,7 @@ export function PriceTable() {
 
               {/* 30D sparkline */}
               <div className="w-[80px] ml-[var(--spacing-lg)] flex justify-end shrink-0">
-                <Sparkline data={coin.sparkline30d} color={sparklineColor} />
+                <Sparkline data={coin.sparkline30d} />
               </div>
             </motion.div>
           );

@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="h-[52px] bg-[var(--bg-primary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
         <span className="text-[length:var(--font-size-text-2xs)] text-[var(--text-quaternary)]">
-          © 2026 Coin Digest. All rights reserved.
+          © 2026 Cryptalk. All rights reserved.
         </span>
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-4">

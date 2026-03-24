@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowUpIcon, ArrowDownIcon } from "./icons";
 
 const gainersData = {
   "24h": [
@@ -36,28 +37,29 @@ const losersData = {
   ],
 };
 
-const iconColors: Record<string, string> = {
-  XRP: "#23292F",
-  MON: "#836EF9",
-  STX: "#5546FF",
-  INJ: "#00F2FE",
-  LINK: "#2A5ADA",
-  WLD: "#1A1A2E",
-  APT: "#2DD8A3",
-  DOGE: "#C2A633",
-  ETH: "#627EEA",
-  DOT: "#E6007A",
+const coinImages: Record<string, string> = {
+  BTC: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
+  ETH: "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
+  XRP: "https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png",
+  SOL: "https://assets.coingecko.com/coins/images/4128/small/solana.png",
+  DOGE: "https://assets.coingecko.com/coins/images/5/small/dogecoin.png",
+  DOT: "https://assets.coingecko.com/coins/images/12171/small/polkadot.png",
+  LINK: "https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png",
+  INJ: "https://assets.coingecko.com/coins/images/12882/small/Secondary_Symbol.png",
+  STX: "https://assets.coingecko.com/coins/images/2069/small/Stacks_logo_full.png",
+  MON: "/coins/monad.png",
+  WLD: "https://assets.coingecko.com/coins/images/31069/small/worldcoin.jpeg",
+  APT: "https://assets.coingecko.com/coins/images/26455/small/aptos_round.png",
 };
 
 function CoinIcon({ ticker }: { ticker: string }) {
+  const src = coinImages[ticker];
+  if (src) {
+    return <img src={src} alt={ticker} className="w-[22px] h-[22px] rounded-full shrink-0 object-cover" />;
+  }
   return (
-    <div
-      className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 opacity-85"
-      style={{ backgroundColor: iconColors[ticker] || "#333" }}
-    >
-      <span className="text-[length:9px] font-bold text-white/90">
-        {ticker.slice(0, 2)}
-      </span>
+    <div className="w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0 bg-[#333]">
+      <span className="text-[length:9px] font-bold text-white/90">{ticker.slice(0, 2)}</span>
     </div>
   );
 }
@@ -70,14 +72,14 @@ function TimeToggle({
   onChange: (v: "1h" | "24h") => void;
 }) {
   return (
-    <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-primary)] p-px gap-0">
+    <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-secondary)] p-px gap-0">
       {(["1h", "24h"] as const).map((option) => (
         <button
           key={option}
           onClick={() => onChange(option)}
           className={`px-[9px] py-0.5 rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
             value === option
-              ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+              ? "border border-[var(--border-secondary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
           }`}
         >
@@ -106,7 +108,7 @@ function MoverCard({
     : "var(--fg-error-primary)";
 
   return (
-    <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] pt-[var(--spacing-xl)] px-[var(--spacing-2xl)] pb-[var(--spacing-2xl)] shadow-[var(--shadow-card)] flex-1 min-w-0">
+    <div className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] pt-[var(--spacing-xl)] px-[var(--spacing-2xl)] pb-[var(--spacing-2xl)] shadow-[var(--shadow-card)] flex-1 min-w-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
@@ -158,9 +160,7 @@ function MoverCard({
               className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
               style={{ color: accentColor }}
             >
-              <span className="text-[length:8px] leading-none">
-                {isGainer ? "▲" : "▼"}
-              </span>
+              {isGainer ? <ArrowUpIcon size={8} className="text-inherit" /> : <ArrowDownIcon size={8} className="text-inherit" />}
               {Math.abs(item.change).toFixed(2)}%
             </span>
           </div>

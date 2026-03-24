@@ -52,45 +52,45 @@
   --font-weight-bold: 700;
 
   /* Text colors */
-  --text-primary: #0d0d0d;
-  --text-secondary: #222222;
-  --text-tertiary: #717680;
-  --text-quaternary: #6d6d6d;
-  --text-disabled: #969696;
-  --text-inverse: #f1f1f1;
+  --text-primary: #181d27;
+  --text-secondary: #414651;
+  --text-tertiary: #535862;
+  --text-quaternary: #717680;
+  --text-disabled: #717680;
+  --text-inverse: #f7f7f7;
 
   /* Foreground colors (icons, indicators) */
-  --fg-primary: #0d0d0d;
-  --fg-secondary: #3b3f46;
+  --fg-primary: #181d27;
+  --fg-secondary: #414651;
   --fg-tertiary: #535862;
-  --fg-disabled: #969696;
-  --fg-neutral-primary: #c8c8c8;
-  --fg-brand-primary: #0071e9;
-  --fg-error-primary: #d82138;
-  --fg-error-rgb: 216, 33, 56;
-  --fg-success-primary: #1a7f4c;
-  --fg-success-rgb: 26, 127, 76;
-  --kol-block-bg: #E8E8F4;
-  --kol-block-bg-hover: #DCDCEE;
+  --fg-disabled: #a4a7ae;
+  --fg-neutral-primary: #d5d7da;
+  --fg-brand-primary: #5741ea;
+  --fg-error-primary: #d92d20;
+  --fg-error-rgb: 217, 45, 32;
+  --fg-success-primary: #079455;
+  --fg-success-rgb: 7, 148, 85;
+  --kol-block-bg: #edf1ff;
+  --kol-block-bg-hover: #dfe4ff;
 
   /* Background colors */
-  --bg-primary: #fcfbf9;
+  --bg-primary: #fafafa;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f9f9f9;
-  --bg-quaternary: #efefef;
-  --bg-active: #f9f9f9;
-  --bg-disabled: #f9f9f9;
+  --bg-tertiary: #f5f5f5;
+  --bg-quaternary: #e9eaeb;
+  --bg-active: #e9eaeb;
+  --bg-disabled: #e9eaeb;
 
   /* Border colors */
-  --border-primary: #eeeeee;
-  --border-secondary: #eeeeee;
+  --border-primary: #d5d7da;
+  --border-secondary: #e9eaeb;
 
   /* Badge */
-  --badge-bg: #fdfdff;
-  --badge-border: #ebecf4;
-  --badge-text: #3b3f46;
-  --badge-danger-bg: rgba(216, 33, 56, 0.08);
-  --badge-success-bg: rgba(26, 127, 76, 0.08);
+  --badge-bg: #ffffff;
+  --badge-border: #e9eaeb;
+  --badge-text: #414651;
+  --badge-danger-bg: rgba(217, 45, 32, 0.08);
+  --badge-success-bg: rgba(7, 148, 85, 0.08);
 
   /* Shadows */
   --shadow-card: 0px 4px 18px 0px rgba(0, 0, 0, 0.02);
@@ -105,48 +105,48 @@
   --font-weight-bold: 700;
 
   /* Text colors */
-  --text-primary: #f1f1f1;
-  --text-secondary: #fbfbfb;
-  --text-tertiary: #969696;
-  --text-quaternary: #818181;
-  --text-disabled: #515151;
-  --text-inverse: #0d0d0d;
+  --text-primary: #f7f7f7;
+  --text-secondary: #ececed;
+  --text-tertiary: #cecfd2;
+  --text-quaternary: #94979c;
+  --text-disabled: #94979c;
+  --text-inverse: #0c0e12;
 
   /* Foreground colors (icons, indicators) */
-  --fg-primary: #f1f1f1;
-  --fg-secondary: #969696;
-  --fg-tertiary: #818181;
-  --fg-disabled: #515151;
-  --fg-neutral-primary: #4a4a4a;
-  --fg-brand-primary: #0071e9;
-  --fg-error-primary: #e3435a;
-  --fg-error-rgb: 227, 67, 90;
-  --fg-success-primary: #47cd89;
-  --fg-success-rgb: 71, 205, 137;
-  --kol-block-bg: #282C3A;
-  --kol-block-bg-hover: #323748;
+  --fg-primary: #ffffff;
+  --fg-secondary: #cecfd2;
+  --fg-tertiary: #94979c;
+  --fg-disabled: #85888e;
+  --fg-neutral-primary: #61656c;
+  --fg-brand-primary: #7d7ffc;
+  --fg-error-primary: #f04438;
+  --fg-error-rgb: 240, 68, 56;
+  --fg-success-primary: #17b26a;
+  --fg-success-rgb: 23, 178, 106;
+  --kol-block-bg: #293056;
+  --kol-block-bg-hover: #363f72;
 
   /* Background colors */
-  --bg-primary: #060606;
-  --bg-secondary: #0c0c0c;
-  --bg-tertiary: #111111;
-  --bg-quaternary: #191919;
-  --bg-active: #111111;
-  --bg-disabled: #111111;
+  --bg-primary: #0c0e12;
+  --bg-secondary: #13161b;
+  --bg-tertiary: #22262f;
+  --bg-quaternary: #373a41;
+  --bg-active: #22262f;
+  --bg-disabled: #22262f;
 
   /* Border colors */
-  --border-primary: #191919;
-  --border-secondary: #191919;
+  --border-primary: #373a41;
+  --border-secondary: #22262f;
 
   /* Badge */
-  --badge-bg: #191919;
-  --badge-border: #262626;
-  --badge-text: #969696;
-  --badge-danger-bg: rgba(185, 18, 46, 0.22);
+  --badge-bg: #22262f;
+  --badge-border: #373a41;
+  --badge-text: #94979c;
+  --badge-danger-bg: rgba(240, 68, 56, 0.18);
   --badge-success-bg: rgba(5, 51, 33, 0.72);
 
   /* Shadows */
-  --shadow-card: 0px 2px 20px 0px rgba(10, 13, 18, 0.03);
+  --shadow-card: 0px 2px 20px 0px rgba(10, 13, 18, 0.06);
 }
 
 body {

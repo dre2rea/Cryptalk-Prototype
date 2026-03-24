@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { SearchIcon, MoonIcon, SunIcon, BellIcon, UserIcon } from "./icons";
 
 const navItems = [
   { label: "시장 현황", active: true },
+  { label: "종목 골라보기", active: false },
   { label: "커뮤니티", active: false },
 ];
 
@@ -12,13 +14,13 @@ interface HeaderProps {
 
 export function Header({ isDark, onThemeToggle }: HeaderProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-[var(--bg-primary)] border-b border-[var(--border-primary)] flex items-center justify-center">
+    <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-[var(--bg-primary)] border-b border-[var(--border-secondary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">
-          <span className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight">
-            Coin Digest
-          </span>
+          <Link href="/" className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight no-underline">
+            CRYPTALK
+          </Link>
           <nav className="flex items-center gap-4">
             {navItems.map((item) => (
               <button
@@ -26,7 +28,7 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
                 className={`text-[length:var(--font-size-text-sm)] font-medium px-[2px] ${
                   item.active
                     ? "text-[var(--text-primary)]"
-                    : "text-[var(--text-tertiary)]"
+                    : "text-[var(--text-quaternary)]"
                 }`}
               >
                 {item.label}

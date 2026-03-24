@@ -103,9 +103,9 @@ function genSparkline(
     const spike = rand() > 0.87 ? (rand() - 0.5) * 2.2 : 0;
     const noise =
       baseRange * variance * (
-        0.045 * (wave * 0.6 + microWave * 0.4) * roughness +
-        0.02 * jitter * roughness +
-        0.012 * spike * roughness
+        0.12 * (wave * 0.6 + microWave * 0.4) * roughness +
+        0.06 * jitter * roughness +
+        0.04 * spike * roughness
       );
 
     result.push(Math.min(ceiling, Math.max(floor, baseValue + noise)));
