@@ -47,8 +47,8 @@ const newsItem = {
   timeline: [
     { date: "5일 전", event: "이란, 우라늄 농축 60% 돌파 공식 확인", current: false },
     { date: "3일 전", event: "미국-이란 핵 협상 결렬 보도", current: false },
-    { date: "2일 전", event: "미 항공모함 2척 중동 배치 명령", current: false },
-    { date: "1일 전", event: "이스라엘, 이란 핵 시설 위성 사진 공개", current: false },
+    { date: "그저께", event: "미 항공모함 2척 중동 배치 명령", current: false },
+    { date: "어제", event: "이스라엘, 이란 핵 시설 위성 사진 공개", current: false },
     { date: "오늘", event: "미국, 이란 군사시설 정밀 공습 단행", current: true },
   ],
   relatedNews: [
@@ -125,7 +125,7 @@ export default function NewsDetailPage() {
 
         {/* Header */}
         <div className="mb-10">
-          <h1 className="flex items-center gap-3 text-[length:var(--font-size-display-sm)] font-[var(--font-weight-bold)] text-[color:var(--text-primary)] mb-4">
+          <h1 className="flex items-center gap-3 text-[length:var(--font-size-display-xs)] font-[var(--font-weight-bold)] text-[color:var(--text-primary)] mb-4">
             <span
               className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] px-2.5 py-1 rounded-[var(--radius-sm)]"
               style={{
@@ -150,9 +150,6 @@ export default function NewsDetailPage() {
 
             {/* Summary */}
             <div>
-              <h2 className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
-                요약
-              </h2>
               <div className="space-y-4">
                 {newsItem.summary.map((para, i) => (
                   <p
@@ -186,7 +183,7 @@ export default function NewsDetailPage() {
 
             {/* Reactions */}
             <div>
-              <h2 className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
+              <h2 className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
                 주요 반응
               </h2>
               <div className="space-y-3">
@@ -259,7 +256,7 @@ export default function NewsDetailPage() {
 
             {/* Related news */}
             <div>
-              <h2 className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
+              <h2 className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
                 관련 뉴스
               </h2>
               <div className="space-y-2">
@@ -303,7 +300,7 @@ export default function NewsDetailPage() {
           <div className="space-y-10">
             {/* Timeline */}
             <div>
-              <h2 className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
+              <h2 className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
                 관련 타임라인
               </h2>
               <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] p-5 sticky top-8">
@@ -345,7 +342,7 @@ export default function NewsDetailPage() {
 
             {/* 관련 종목 */}
             <div>
-              <h2 className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
+              <h2 className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
                 관련 종목
               </h2>
               <div className="flex flex-wrap gap-2">

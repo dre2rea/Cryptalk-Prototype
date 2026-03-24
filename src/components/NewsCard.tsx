@@ -127,7 +127,7 @@ export function NewsCard() {
 
               {isOpen && (
                 <div
-                  className="pl-[54px] pr-[var(--spacing-lg)] pb-[var(--spacing-lg)] pt-[var(--spacing-xs)]"
+                  className="pl-[54px] pr-[var(--spacing-lg)] pb-[var(--spacing-lg)] pt-[var(--spacing-sm)]"
                 >
                   <p
                     className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-tertiary)] m-0"
@@ -135,7 +135,7 @@ export function NewsCard() {
                     {item.summary}
                   </p>
                   <div
-                    className="flex items-center gap-[var(--spacing-sm)] mt-[var(--spacing-md)]"
+                    className="flex items-center gap-[var(--spacing-sm)] mt-[10px]"
                   >
                     {item.coins.map((coin, ci) => (
                       <span

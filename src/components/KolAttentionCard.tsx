@@ -283,9 +283,15 @@ export function KolAttentionCard() {
               className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-secondary)] px-[var(--spacing-lg)] py-[var(--spacing-lg)] z-30 pointer-events-none"
               style={{
                 left: mousePos.x,
-                top: mousePos.y - 114,
+                top: mousePos.y - 140,
               }}
             >
+              <div className="flex items-center gap-[var(--spacing-xs)] mb-[var(--spacing-md)]">
+                <CoinIcon ticker={item.ticker} size={18} />
+                <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)]">
+                  {item.name}
+                </span>
+              </div>
               <div className="flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-md)]">
                 <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-semibold)] text-[color:var(--text-primary)]">
                   {item.mentions}회
