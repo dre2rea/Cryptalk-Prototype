@@ -16,7 +16,7 @@ const chartMetrics = [
 export function MarketSummary() {
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-[16px] leading-[24px] font-medium text-[var(--text-secondary)]">
+      <h2 className="text-[16px] leading-[24px] font-semibold text-[var(--text-secondary)]">
         시장 현황
       </h2>
       <div className="flex items-center gap-3">
@@ -25,7 +25,7 @@ export function MarketSummary() {
             <MetricItem key={m.label} {...m} />
           ))}
         </div>
-        <div className="w-[0.5px] h-[25px] bg-[var(--border-secondary)]" />
+        <div className="shrink-0 h-[32px]" style={{ width: 1, background: 'var(--border-primary)' }} />
         <div className="flex gap-[10px]">
           {chartMetrics.map((m) => (
             <MetricItem key={m.label} {...m} />

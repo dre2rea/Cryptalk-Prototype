@@ -166,19 +166,13 @@ export function KolAttentionCard() {
 
   // Plain render function (NOT a component) — prevents unmount/remount on re-render,
   // which would swallow onMouseLeave events and leave the tooltip stuck.
-  function renderTreeBlock(item: KolItem, idx: number, widthPct: number, height: number) {
+  function renderTreeBlock(item: KolItem, idx: number, widthPct: number) {
     const trend = getTrend(item.mentions, item.prevMentions);
     const isHovered = hovered === idx;
 
-    const hoverBoost = isHovered ? 0.08 : 0;
-    let bgColor;
-    if (trend.dir === "up") {
-      bgColor = `rgba(var(--fg-success-rgb), ${0.12 + trend.pct / 400 + hoverBoost})`;
-    } else if (trend.dir === "down") {
-      bgColor = `rgba(var(--fg-error-rgb), ${0.10 + trend.pct / 400 + hoverBoost})`;
-    } else {
-      bgColor = `rgba(255,255,255,${0.04 + hoverBoost})`;
-    }
+    const bgColor = isHovered
+      ? "var(--kol-block-bg-hover)"
+      : "var(--kol-block-bg)";
 
     const trendColor =
       trend.dir === "up"
@@ -193,7 +187,6 @@ export function KolAttentionCard() {
         className="relative flex flex-col items-end justify-end p-[var(--spacing-lg)] text-left border border-white/[0.04] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-200 ease-in-out"
         style={{
           width: `${widthPct}%`,
-          height,
           backgroundColor: bgColor,
         }}
         onMouseEnter={() => handleBlockEnter(idx)}
@@ -206,7 +199,7 @@ export function KolAttentionCard() {
         <div className="w-full mt-auto flex flex-col items-start gap-[var(--spacing-xs)]">
           <CoinIcon ticker={item.ticker} size={18} />
           <div className="flex items-center gap-[var(--spacing-sm)]">
-            <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-semibold)] text-[color:var(--text-primary)]">
+            <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)]">
               {item.name}
             </span>
             <span
@@ -227,7 +220,7 @@ export function KolAttentionCard() {
   return (
     <div
       ref={cardRef}
-      className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] relative flex-1 min-w-0"
+      className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] relative flex-1 min-w-0 flex flex-col"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
@@ -253,22 +246,22 @@ export function KolAttentionCard() {
 
       {/* Treemap */}
       <div
-        className="flex flex-col gap-[var(--spacing-xs)]"
+        className="flex flex-col gap-[var(--spacing-xs)] flex-1"
         onMouseLeave={() => {
           if (leaveTimer.current) clearTimeout(leaveTimer.current);
           setHovered(null);
         }}
       >
         {/* Top row */}
-        <div className="flex gap-[var(--spacing-xs)] h-[110px]">
+        <div className="flex gap-[var(--spacing-xs)] flex-[6]">
           {topRow.map((item, i) =>
-            renderTreeBlock(item, i, (item.mentions / topTotal) * 100, 110)
+            renderTreeBlock(item, i, (item.mentions / topTotal) * 100)
           )}
         </div>
         {/* Bottom row */}
-        <div className="flex gap-[var(--spacing-xs)] h-[80px]">
+        <div className="flex gap-[var(--spacing-xs)] flex-[4]">
           {bottomRow.map((item, i) =>
-            renderTreeBlock(item, i + 3, (item.mentions / bottomTotal) * 100, 80)
+            renderTreeBlock(item, i + 3, (item.mentions / bottomTotal) * 100)
           )}
         </div>
       </div>
@@ -292,7 +285,7 @@ export function KolAttentionCard() {
               className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-primary)] px-[var(--spacing-lg)] py-[var(--spacing-lg)] z-30 pointer-events-none"
               style={{
                 left: mousePos.x,
-                top: mousePos.y - 110,
+                top: mousePos.y - 114,
               }}
             >
               <div className="flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-md)]">
@@ -321,7 +314,7 @@ export function KolAttentionCard() {
         })()}
 
       <p className="text-[11px] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] m-0 mt-[var(--spacing-lg)]">
-        KOL {kolRegion === "국내" ? "32" : "55"}명 기준 · 지난 24시간
+        국내외 KOL {kolRegion === "국내" ? "32" : "55"}명 · 지난 24시간 언급량 기준
       </p>
     </div>
   );

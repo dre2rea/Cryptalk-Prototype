@@ -19,7 +19,7 @@ function Change({ changePercent, trend }: { changePercent: number; trend: "up" |
       <span className="size-[10px] flex items-center justify-center" style={{ color }}>
         {isUp ? <ArrowUpIcon size={10} className="text-inherit" /> : <ArrowDownIcon size={10} className="text-inherit" />}
       </span>
-      <span className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] font-medium whitespace-nowrap" style={{ color }}>
+      <span className="text-[length:var(--font-size-text-sm)] leading-[var(--line-height-text-sm)] font-[var(--font-weight-regular)] whitespace-nowrap" style={{ color }}>
         {changePercent}%
       </span>
     </div>

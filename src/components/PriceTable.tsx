@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { coins } from "@/data/mockData";
 
 type SortField = "price" | "1h" | "1d" | "7d" | null;
@@ -109,8 +110,15 @@ export function PriceTable() {
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [hovered, setHovered] = useState<number | null>(null);
+  const [animateLayout, setAnimateLayout] = useState(true);
+
+  const handleTabChange = (t: Tab) => {
+    setAnimateLayout(false);
+    setTab(t);
+  };
 
   const handleSort = (field: SortField) => {
+    setAnimateLayout(true);
     if (sortField === field) {
       if (sortDir === "desc") setSortDir("asc");
       else {
@@ -145,14 +153,14 @@ export function PriceTable() {
     <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
-        <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-semibold)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
+        <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
           가격 정보
         </h2>
         <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-primary)] p-px gap-0">
           {(["all", "favorites"] as const).map((option) => (
             <button
               key={option}
-              onClick={() => setTab(option)}
+              onClick={() => handleTabChange(option)}
               className={`px-[9px] py-0.5 rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
                 tab === option
                   ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
@@ -167,39 +175,39 @@ export function PriceTable() {
 
       {/* Table Header */}
       <div className="flex items-center gap-[var(--spacing-md)] px-[var(--spacing-sm)] pb-[var(--spacing-md)] border-b border-[var(--border-primary)]">
-        <span className="flex-1 min-w-0 text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)]">
+        <span className="flex-1 min-w-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
           종목
         </span>
         <button
           onClick={() => handleSort("price")}
-          className="w-[80px] text-right shrink-0 text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
+          className="w-[80px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
           현재가
           <SortArrow active={sortField === "price"} dir={sortDir} />
         </button>
         <button
           onClick={() => handleSort("1h")}
-          className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
+          className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
-          1H
+          1h
           <SortArrow active={sortField === "1h"} dir={sortDir} />
         </button>
         <button
           onClick={() => handleSort("1d")}
-          className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
+          className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
-          24H
+          24h
           <SortArrow active={sortField === "1d"} dir={sortDir} />
         </button>
         <button
           onClick={() => handleSort("7d")}
-          className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
+          className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)] bg-transparent border-none cursor-pointer flex items-center justify-end p-0"
         >
-          7D
+          7d
           <SortArrow active={sortField === "7d"} dir={sortDir} />
         </button>
-        <span className="w-[80px] ml-[var(--spacing-md)] text-right shrink-0 text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)]">
-          30D
+        <span className="w-[80px] ml-[var(--spacing-md)] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
+          30d
         </span>
       </div>
 
@@ -211,8 +219,10 @@ export function PriceTable() {
             : "var(--fg-error-primary)";
 
           return (
-            <div
+            <motion.div
               key={coin.id}
+              layout={animateLayout}
+              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
               className="flex items-center gap-[var(--spacing-md)] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-150 ease-in-out"
@@ -221,6 +231,11 @@ export function PriceTable() {
                   hovered === i ? "var(--bg-active)" : "transparent",
               }}
             >
+              {/* Rank */}
+              <span className="w-[10px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
+                {i + 1}
+              </span>
+
               {/* Coin name */}
               <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
                 <CoinIcon symbol={coin.symbol} />
@@ -280,7 +295,7 @@ export function PriceTable() {
               <div className="w-[80px] ml-[var(--spacing-lg)] flex justify-end shrink-0">
                 <Sparkline data={coin.sparkline30d} color={sparklineColor} />
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
