@@ -122,10 +122,10 @@
   --fg-disabled: #85888e;
   --fg-neutral-primary: #61656c;
   --fg-brand-primary: #7d7ffc;
-  --fg-error-primary: #f04438;
-  --fg-error-rgb: 240, 68, 56;
-  --fg-success-primary: #17b26a;
-  --fg-success-rgb: 23, 178, 106;
+  --fg-error-primary: #F6465D;
+  --fg-error-rgb: 246, 70, 93;
+  --fg-success-primary: #0ECB81;
+  --fg-success-rgb: 14, 203, 129;
   --kol-block-bg: #293056;
   --kol-block-bg-hover: #363f72;
 
@@ -145,8 +145,8 @@
   --badge-bg: #22262f;
   --badge-border: #373a41;
   --badge-text: #94979c;
-  --badge-danger-bg: rgba(240, 68, 56, 0.18);
-  --badge-success-bg: rgba(5, 51, 33, 0.72);
+  --badge-danger-bg: rgba(246, 70, 93, 0.18);
+  --badge-success-bg: rgba(14, 203, 129, 0.12);
 
   /* Star */
   --star-filled: #D4B514;

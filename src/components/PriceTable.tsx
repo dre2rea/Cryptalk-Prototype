@@ -152,28 +152,18 @@ function SortArrow({
 }) {
   return (
     <span className="inline-flex flex-col ml-1 leading-none gap-[1px]">
-      <span
-        className="text-[7px] leading-none"
-        style={{
-          color:
-            active && dir === "asc"
-              ? "var(--text-primary)"
-              : "var(--border-primary)",
-        }}
-      >
-        ▲
-      </span>
-      <span
-        className="text-[7px] leading-none"
-        style={{
-          color:
-            active && dir === "desc"
-              ? "var(--text-primary)"
-              : "var(--border-primary)",
-        }}
-      >
-        ▼
-      </span>
+      <svg width="6" height="4" viewBox="0 0 6 4">
+        <path
+          d="M3 0L6 4H0L3 0Z"
+          fill={active && dir === "asc" ? "var(--text-primary)" : "var(--border-primary)"}
+        />
+      </svg>
+      <svg width="6" height="4" viewBox="0 0 6 4">
+        <path
+          d="M3 4L0 0H6L3 4Z"
+          fill={active && dir === "desc" ? "var(--text-primary)" : "var(--border-primary)"}
+        />
+      </svg>
     </span>
   );
 }
