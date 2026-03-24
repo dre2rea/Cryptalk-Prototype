@@ -11,7 +11,7 @@ interface HeaderProps {
 
 export function Header({ isDark, onThemeToggle }: HeaderProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-[var(--bg-primary)] border-b border-[var(--border-primary)] flex items-center justify-center">
+    <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-[var(--bg-primary)] border-b border-[var(--border-secondary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">

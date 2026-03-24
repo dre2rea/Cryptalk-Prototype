@@ -150,20 +150,20 @@ export function PriceTable() {
   const displayCoins = sorted.slice(0, 7);
 
   return (
-    <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
+    <div className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
           가격 정보
         </h2>
-        <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-primary)] p-px gap-0">
+        <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-secondary)] p-px gap-0">
           {(["all", "favorites"] as const).map((option) => (
             <button
               key={option}
               onClick={() => handleTabChange(option)}
               className={`px-[9px] py-0.5 rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
                 tab === option
-                  ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                  ? "border border-[var(--border-secondary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
               }`}
             >
@@ -174,7 +174,7 @@ export function PriceTable() {
       </div>
 
       {/* Table Header */}
-      <div className="flex items-center gap-[var(--spacing-md)] px-[var(--spacing-sm)] pb-[var(--spacing-md)] border-b border-[var(--border-primary)]">
+      <div className="flex items-center gap-[var(--spacing-md)] px-[var(--spacing-sm)] pb-[var(--spacing-md)] border-b border-[var(--border-secondary)]">
         <span className="flex-1 min-w-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-quaternary)]">
           종목
         </span>

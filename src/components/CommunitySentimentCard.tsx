@@ -91,7 +91,7 @@ function sentimentStyle(sentiment: PlatformSentiment["sentiment"]) {
 // ─── Component ──────────────────────────────────────────────────────────────
 export function CommunitySentimentCard() {
   return (
-    <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] flex-1 min-w-0">
+    <div className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] flex-1 min-w-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">

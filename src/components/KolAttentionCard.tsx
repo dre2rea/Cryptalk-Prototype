@@ -220,21 +220,21 @@ export function KolAttentionCard() {
   return (
     <div
       ref={cardRef}
-      className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] relative flex-1 min-w-0 flex flex-col"
+      className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)] relative flex-1 min-w-0 flex flex-col"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
           KOL 관심 종목
         </h2>
-        <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-primary)] p-px gap-0">
+        <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-secondary)] p-px gap-0">
           {(["국내", "해외"] as const).map((label) => (
             <button
               key={label}
               onClick={() => handleRegionSwitch(label)}
               className={`px-[9px] py-[2px] rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
                 kolRegion === label
-                  ? "border border-[var(--border-primary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                  ? "border border-[var(--border-secondary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
               }`}
             >
@@ -282,7 +282,7 @@ export function KolAttentionCard() {
             trend.dir === "up" ? "var(--fg-success-primary)" : trend.dir === "down" ? "var(--fg-error-primary)" : "var(--text-disabled)";
           return (
             <div
-              className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-primary)] px-[var(--spacing-lg)] py-[var(--spacing-lg)] z-30 pointer-events-none"
+              className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-secondary)] px-[var(--spacing-lg)] py-[var(--spacing-lg)] z-30 pointer-events-none"
               style={{
                 left: mousePos.x,
                 top: mousePos.y - 114,

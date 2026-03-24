@@ -41,11 +41,11 @@ export function AISummaryCard() {
       `}</style>
 
       <div
-        className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
+        className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
       >
         {/* Status indicator */}
         <div
-          className="flex items-center gap-[var(--spacing-md)] pb-[var(--spacing-xl)] border-b border-[var(--border-primary)] mb-[var(--spacing-2xl)]"
+          className="flex items-center gap-[var(--spacing-md)] pb-[var(--spacing-xl)] border-b border-[var(--border-secondary)] mb-[var(--spacing-2xl)]"
         >
           <span
             className="relative shrink-0 w-1.5 h-1.5"
