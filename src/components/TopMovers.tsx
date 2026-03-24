@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowUpIcon, ArrowDownIcon } from "./icons";
 
 const gainersData = {
   "24h": [
@@ -159,9 +160,7 @@ function MoverCard({
               className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
               style={{ color: accentColor }}
             >
-              <span className="text-[length:8px] leading-none">
-                {isGainer ? "▲" : "▼"}
-              </span>
+              {isGainer ? <ArrowUpIcon size={8} className="text-inherit" /> : <ArrowDownIcon size={8} className="text-inherit" />}
               {Math.abs(item.change).toFixed(2)}%
             </span>
           </div>

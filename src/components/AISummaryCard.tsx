@@ -68,11 +68,6 @@ export function AISummaryCard() {
             {marketStatus.label}
           </span>
           <span
-            className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-tertiary)]"
-          >
-            ({marketStatus.phase})
-          </span>
-          <span
             className="ml-auto text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)]"
           >
             2026.03.13 09:00 기준

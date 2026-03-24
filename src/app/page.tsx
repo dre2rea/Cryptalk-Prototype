@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-primary)]">
       <Header isDark={isDark} onThemeToggle={() => setIsDark(!isDark)} />
-      <main className="flex-1 pt-[100px] pb-16 px-8 max-w-[1440px] mx-auto w-full">
+      <main className="flex-1 pt-[100px] pb-32 px-8 max-w-[1440px] mx-auto w-full">
         {/* 시장 현황 */}
         <MarketSummary />
         <div className="mt-3 flex gap-3 items-start">

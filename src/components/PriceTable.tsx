@@ -139,7 +139,7 @@ function SortArrow({
           color:
             active && dir === "asc"
               ? "var(--text-primary)"
-              : "rgba(255,255,255,0.12)",
+              : "var(--border-primary)",
         }}
       >
         ▲
@@ -150,7 +150,7 @@ function SortArrow({
           color:
             active && dir === "desc"
               ? "var(--text-primary)"
-              : "rgba(255,255,255,0.12)",
+              : "var(--border-primary)",
         }}
       >
         ▼
