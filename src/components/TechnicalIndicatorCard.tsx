@@ -5,11 +5,11 @@ import { useState } from "react";
 // ─── Mock Data ──────────────────────────────────────────────────────────────
 
 const volumeSurgeCoins = [
-  { rank: 1, name: "페페", ticker: "PEPE", value: 20354.62 },
-  { rank: 2, name: "인젝티브", ticker: "INJ", value: 2339.37 },
-  { rank: 3, name: "수이", ticker: "SUI", value: 1659.77 },
-  { rank: 4, name: "아비트럼", ticker: "ARB", value: 1167.03 },
-  { rank: 5, name: "체인링크", ticker: "LINK", value: 1141.11 },
+  { rank: 1, name: "페페", ticker: "PEPE", value: 482.3 },
+  { rank: 2, name: "인젝티브", ticker: "INJ", value: 327.1 },
+  { rank: 3, name: "수이", ticker: "SUI", value: 245.6 },
+  { rank: 4, name: "아비트럼", ticker: "ARB", value: 189.4 },
+  { rank: 5, name: "체인링크", ticker: "LINK", value: 156.8 },
 ];
 
 const volumeDropCoins = [
@@ -169,8 +169,7 @@ function OiSignal({ oiChange, priceChange }: { oiChange: number; priceChange: nu
 function formatVolume(v: number) {
   const abs = Math.abs(v);
   const prefix = v >= 0 ? "+" : "-";
-  if (abs >= 1000) return `${prefix}${(abs / 1000).toFixed(1)}K%`;
-  return `${prefix}${abs.toFixed(1)}%`;
+  return `${prefix}${abs.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
 }
 
 // ─── Card Types ─────────────────────────────────────────────────────────────

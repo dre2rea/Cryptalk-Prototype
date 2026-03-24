@@ -1,4 +1,5 @@
 import { MetricItem } from "./MetricItem";
+import { coins } from "@/data/mockData";
 
 const standardMetrics = [
   { label: "글로벌 거래량", value: "$782억", changePercent: 34.2, trend: "down" as const },
@@ -8,9 +9,12 @@ const standardMetrics = [
   { label: "김치 프리미엄", value: "-1.11%", changePercent: 0, trend: "down" as const, badge: "역전", badgeVariant: "danger" as const },
 ];
 
+const btc = coins.find((c) => c.id === "bitcoin")!;
+const eth = coins.find((c) => c.id === "ethereum")!;
+
 const chartMetrics = [
-  { label: "비트코인", value: "$83,241.00", changePercent: 2.14, trend: "down" as const, showChart: true },
-  { label: "이더리움", value: "$2,187.00", changePercent: 3.41, trend: "down" as const, showChart: true },
+  { label: "비트코인", value: "$83,241.00", changePercent: 2.14, trend: "down" as const, showChart: true, sparklineData: btc.sparkline30d },
+  { label: "이더리움", value: "$2,187.00", changePercent: 3.41, trend: "down" as const, showChart: true, sparklineData: eth.sparkline30d },
 ];
 
 export function MarketSummary() {

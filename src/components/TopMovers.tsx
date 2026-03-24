@@ -46,7 +46,7 @@ const coinImages: Record<string, string> = {
   LINK: "https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png",
   INJ: "https://assets.coingecko.com/coins/images/12882/small/Secondary_Symbol.png",
   STX: "https://assets.coingecko.com/coins/images/2069/small/Stacks_logo_full.png",
-  MON: "https://assets.coingecko.com/coins/images/52490/small/monad.jpg",
+  MON: "/coins/monad.png",
   WLD: "https://assets.coingecko.com/coins/images/31069/small/worldcoin.jpeg",
   APT: "https://assets.coingecko.com/coins/images/26455/small/aptos_round.png",
 };

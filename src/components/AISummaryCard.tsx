@@ -35,8 +35,8 @@ export function AISummaryCard() {
     <>
       <style>{`
         @keyframes ripple {
-          0% { transform: scale(1); opacity: 0.45; }
-          100% { transform: scale(2.8); opacity: 0; }
+          0% { transform: scale(1); opacity: 0.6; }
+          100% { transform: scale(3.2); opacity: 0; }
         }
       `}</style>
 
@@ -56,7 +56,7 @@ export function AISummaryCard() {
             />
             {isActive && (
               <span
-                className="absolute inset-0 rounded-full animate-[ripple_2s_ease-out_infinite]"
+                className="absolute inset-0 rounded-full animate-[ripple_1.6s_ease-out_infinite]"
                 style={{ backgroundColor: `var(${sc.colorVar})` }}
               />
             )}
@@ -91,7 +91,7 @@ export function AISummaryCard() {
                 {point.title}
               </p>
               <p
-                className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-tertiary)] m-0"
+                className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-quaternary)] m-0"
               >
                 {point.text}
               </p>
