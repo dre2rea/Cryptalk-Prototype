@@ -36,51 +36,6 @@ function CoinIcon({ ticker, size = 22 }: { ticker: string; size?: number }) {
   );
 }
 
-function Sparkline({
-  data,
-  color,
-  width = 140,
-  height = 28,
-  id = "spark",
-}: {
-  data: number[];
-  color: string;
-  width?: number;
-  height?: number;
-  id?: string;
-}) {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  const pts = data.map((v, i) => {
-    const x = (i / (data.length - 1)) * width;
-    const y = height - ((v - min) / range) * (height - 4) - 2;
-    return { x, y };
-  });
-  const linePoints = pts.map((p) => `${p.x},${p.y}`).join(" ");
-  const areaPoints = `0,${height} ${linePoints} ${width},${height}`;
-
-  return (
-    <svg width={width} height={height} className="block">
-      <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.25" />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <polygon points={areaPoints} fill={`url(#${id})`} />
-      <polyline
-        points={linePoints}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.7"
-      />
-    </svg>
-  );
-}
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 interface KolItem {
@@ -280,7 +235,7 @@ export function KolAttentionCard() {
             trend.dir === "up" ? "var(--fg-success-primary)" : trend.dir === "down" ? "var(--fg-error-primary)" : "var(--text-disabled)";
           return (
             <div
-              className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-secondary)] px-[var(--spacing-lg)] py-[var(--spacing-lg)] z-30 pointer-events-none"
+              className="absolute -translate-x-1/2 w-[140px] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] border border-[var(--border-secondary)] px-[var(--spacing-md)] py-[var(--spacing-md)] z-30 pointer-events-none overflow-hidden"
               style={{
                 left: mousePos.x,
                 top: mousePos.y - 140,
@@ -306,13 +261,31 @@ export function KolAttentionCard() {
                   {trend.dir !== "flat" ? `${trend.pct}%` : ""}
                 </span>
               </div>
-              <Sparkline
-                data={item.spark}
-                color={sparkRawColor}
-                width={116}
-                height={50}
-                id={`tt-${item.ticker}`}
-              />
+              <svg viewBox="0 0 124 50" className="w-full h-[50px] block">
+                <defs>
+                  <linearGradient id={`tt-${item.ticker}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={sparkRawColor} stopOpacity="0.25" />
+                    <stop offset="100%" stopColor={sparkRawColor} stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                {(() => {
+                  const min = Math.min(...item.spark);
+                  const max = Math.max(...item.spark);
+                  const range = max - min || 1;
+                  const pts = item.spark.map((v: number, si: number) => ({
+                    x: (si / (item.spark.length - 1)) * 124,
+                    y: 50 - ((v - min) / range) * 46 - 2,
+                  }));
+                  const line = pts.map((p: {x: number; y: number}) => `${p.x},${p.y}`).join(" ");
+                  const area = `0,50 ${line} 124,50`;
+                  return (
+                    <>
+                      <polygon points={area} fill={`url(#tt-${item.ticker})`} />
+                      <polyline points={line} fill="none" stroke={sparkRawColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
+                    </>
+                  );
+                })()}
+              </svg>
             </div>
           );
         })()}

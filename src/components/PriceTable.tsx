@@ -8,7 +8,26 @@ type SortField = "price" | "1h" | "1d" | "7d" | null;
 type SortDir = "asc" | "desc";
 type Tab = "all" | "favorites";
 
-const favoriteIds = new Set(["bitcoin", "ethereum", "solana", "ripple"]);
+const initialFavorites = new Set(["bitcoin", "ethereum", "solana", "ripple"]);
+
+function StarIcon({ filled, onClick }: { filled: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      className="shrink-0 p-0 border-none bg-transparent cursor-pointer flex items-center justify-center transition-transform duration-150 ease-in-out hover:scale-[1.1]"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path
+          d="M8 1.5l1.76 3.57 3.94.57-2.85 2.78.67 3.93L8 10.67l-3.52 1.68.67-3.93L2.3 5.64l3.94-.57L8 1.5z"
+          fill={filled ? "var(--star-filled)" : "none"}
+          stroke={filled ? "var(--star-filled)" : "var(--text-disabled)"}
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
 
 function CoinIcon({ symbol, image }: { symbol: string; image: string }) {
   return (
@@ -171,6 +190,16 @@ export function PriceTable() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [hovered, setHovered] = useState<number | null>(null);
   const [animateLayout, setAnimateLayout] = useState(true);
+  const [favoriteIds, setFavoriteIds] = useState(initialFavorites);
+
+  const toggleFavorite = (id: string) => {
+    setFavoriteIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   const handleTabChange = (t: Tab) => {
     setAnimateLayout(false);
@@ -289,6 +318,12 @@ export function PriceTable() {
                   hovered === i ? "var(--bg-active)" : "transparent",
               }}
             >
+              {/* Star */}
+              <StarIcon
+                filled={favoriteIds.has(coin.id)}
+                onClick={() => toggleFavorite(coin.id)}
+              />
+
               {/* Rank */}
               <span className="w-[10px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
                 {i + 1}
