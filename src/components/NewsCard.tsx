@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 
 const newsData = [
@@ -68,6 +68,69 @@ const sentimentConfig = {
   중립: { colorVar: "--text-tertiary", bgVar: "--bg-quaternary" },
 };
 
+function ExpandedContent({ item, href }: { item: typeof newsData[number]; href: string }) {
+  const [moreInline, setMoreInline] = useState(false);
+
+  const pRefCallback = useCallback((el: HTMLParagraphElement | null) => {
+    if (!el) return;
+    const containerWidth = el.clientWidth;
+    const textNode = el.lastChild;
+    if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
+      setMoreInline(false);
+      return;
+    }
+    const range = document.createRange();
+    range.setStart(textNode, Math.max(0, textNode.textContent!.length - 1));
+    range.setEnd(textNode, textNode.textContent!.length);
+    const rect = range.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const endX = rect.right - elRect.left;
+    setMoreInline(containerWidth - endX > 50);
+  }, []);
+
+  return (
+    <div className="pl-[54px] pr-[var(--spacing-lg)] pb-[var(--spacing-lg)] pt-[var(--spacing-sm)]">
+      <p
+        ref={pRefCallback}
+        className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-tertiary)] m-0"
+      >
+        {item.summary}
+        {moreInline && (
+          <>
+            {" "}
+            <Link
+              href={href}
+              className="text-[length:var(--font-size-text-2xs)] leading-[var(--line-height-text-xs)] text-blue-600 dark:text-blue-400 no-underline hover:underline ml-[2px]"
+            >
+              더보기
+            </Link>
+          </>
+        )}
+      </p>
+      <div className="flex items-center mt-[10px]">
+        <div className="flex flex-wrap items-center gap-[var(--spacing-sm)]">
+          {item.coins.map((coin, ci) => (
+            <span
+              key={ci}
+              className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] py-[1px] px-[var(--spacing-sm)] rounded-[var(--radius-sm)] bg-[var(--bg-quaternary)]"
+            >
+              {coin}
+            </span>
+          ))}
+        </div>
+        {!moreInline && (
+          <Link
+            href={href}
+            className="ml-auto text-[length:var(--font-size-text-2xs)] leading-[var(--line-height-text-xs)] text-blue-600 dark:text-blue-400 no-underline hover:underline"
+          >
+            더보기
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function NewsCard() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
@@ -126,33 +189,7 @@ export function NewsCard() {
               </button>
 
               {isOpen && (
-                <div
-                  className="pl-[54px] pr-[var(--spacing-lg)] pb-[var(--spacing-lg)] pt-[var(--spacing-sm)]"
-                >
-                  <p
-                    className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-2sm)] text-[color:var(--text-tertiary)] m-0"
-                  >
-                    {item.summary}
-                  </p>
-                  <div
-                    className="flex items-center gap-[var(--spacing-sm)] mt-[10px]"
-                  >
-                    {item.coins.map((coin, ci) => (
-                      <span
-                        key={ci}
-                        className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] py-[1px] px-[var(--spacing-sm)] rounded-[var(--radius-sm)] bg-[var(--bg-quaternary)]"
-                      >
-                        {coin}
-                      </span>
-                    ))}
-                    <Link
-                      href={i === 0 ? "/news/iran" : "#"}
-                      className="text-[length:var(--font-size-text-sm)] leading-[var(--line-height-text-xs)] text-blue-600 dark:text-blue-400 no-underline hover:underline ml-[var(--spacing-xs)]"
-                    >
-                      더보기
-                    </Link>
-                  </div>
-                </div>
+                <ExpandedContent item={item} href={i === 0 ? "/news/iran" : "#"} />
               )}
             </div>
           );
