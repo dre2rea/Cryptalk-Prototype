@@ -160,133 +160,131 @@ export default function SummaryDetail() {
           </div>
         </div>
 
-        {/* 7-day status strip */}
-        <div className="mb-12">
-          <h2 className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
-            최근 7일 현황
-          </h2>
-          <div className="inline-block rounded-[var(--radius-xl)] border border-[var(--border-primary)] p-6">
-            <div className="relative flex items-center" style={{ minWidth: 480 }}>
-              <div className="absolute top-[14px] left-0 right-0 h-px" style={{ backgroundColor: "var(--border-primary)" }} />
-              {weekStatus.map((d, i) => {
-                const color = statusColors[d.status];
-                const today = d.isToday;
-                const active = d.status !== "neutral";
-                return (
-                  <div key={i} className="flex-1 flex flex-col items-center relative z-10">
-                    {active ? (
-                      <div
-                        className="w-7 h-7 rounded-full flex items-center justify-center"
-                        style={{
-                          backgroundColor: `${color}20`,
-                          border: `1.5px solid ${color}${today ? "AA" : "60"}`,
-                        }}
-                      >
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
-                      </div>
-                    ) : (
-                      <div className="w-7 h-7 flex items-center justify-center">
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
-                      </div>
-                    )}
+        {/* Main content: two columns */}
+        <div className="grid gap-10" style={{ gridTemplateColumns: "1fr 360px" }}>
+
+          {/* Left column: section cards stacked vertically */}
+          <div className="space-y-4">
+            {sections.map((section, si) => {
+              const cfg = trendConfig[section.trend];
+              return (
+                <div
+                  key={si}
+                  className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
+                >
+                  <div className="flex items-center gap-2 mb-3">
                     <span
-                      className={`text-[length:var(--font-size-text-sm)] mt-2.5 ${
-                        today
-                          ? "text-[color:var(--text-primary)] font-[var(--font-weight-medium)]"
-                          : "text-[color:var(--text-quaternary)]"
-                      }`}
+                      className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] px-2 py-0.5 rounded-[var(--radius-sm)]"
+                      style={{ color: cfg.color, backgroundColor: cfg.bg }}
                     >
-                      {today ? `3/${d.day} (오늘)` : `3/${d.day}`}
-                    </span>
-                    <span
-                      className="text-[length:var(--font-size-text-sm)] mt-0.5 font-[var(--font-weight-medium)]"
-                      style={{ color }}
-                    >
-                      {statusLabels[d.status]}
+                      {cfg.label}
                     </span>
                   </div>
-                );
-              })}
+
+                  <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-semibold)] text-[color:var(--text-primary)] mb-3 leading-snug">
+                    {section.headline}
+                  </h2>
+                  <p className="text-[length:var(--font-size-text-sm)] text-[color:var(--text-tertiary)] leading-relaxed mb-6">
+                    {section.detail}
+                  </p>
+
+                  {/* Mini timeline */}
+                  <div className="relative mb-6">
+                    <div className="absolute left-1 top-1 bottom-1 w-px" style={{ backgroundColor: `${cfg.color}20` }} />
+                    <div className="space-y-2.5">
+                      {section.timeline.map((t, ti) => {
+                        const isLast = ti === section.timeline.length - 1;
+                        return (
+                          <div key={ti} className="flex items-start gap-2.5 relative">
+                            <div
+                              className="shrink-0 w-2 h-2 rounded-full mt-1"
+                              style={{ backgroundColor: isLast ? cfg.color : `${cfg.color}40` }}
+                            />
+                            <span
+                              className={`text-[length:var(--font-size-text-sm)] shrink-0 ${
+                                isLast
+                                  ? "text-[color:var(--text-tertiary)] font-[var(--font-weight-medium)]"
+                                  : "text-[color:var(--text-disabled)]"
+                              }`}
+                              style={{ width: 38 }}
+                            >
+                              {t.day}
+                            </span>
+                            <span
+                              className={`text-[length:var(--font-size-text-sm)] ${
+                                isLast ? "text-[color:var(--text-secondary)]" : "text-[color:var(--text-disabled)]"
+                              }`}
+                            >
+                              {t.event}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Historical context */}
+                  <div className="pl-4" style={{ borderLeft: `2px solid ${cfg.color}25` }}>
+                    <p className="text-[length:var(--font-size-text-sm)] text-[color:var(--text-quaternary)] leading-relaxed">
+                      {section.context}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Footer note */}
+            <div className="border-t border-[var(--border-secondary)] mt-6 pt-6">
+              <p className="text-[length:var(--font-size-text-xs)] text-[color:var(--text-disabled)]">
+                AI가 주요 지표를 종합해 생성한 요약입니다
+              </p>
             </div>
           </div>
-        </div>
 
-        {/* Verdict sections — 3 cards in a row */}
-        <div className="flex gap-[var(--spacing-lg)]">
-          {sections.map((section, si) => {
-            const cfg = trendConfig[section.trend];
-            return (
-              <div
-                key={si}
-                className="flex-1 min-w-0 rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span
-                    className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-medium)] px-2 py-0.5 rounded-[var(--radius-sm)]"
-                    style={{ color: cfg.color, backgroundColor: cfg.bg }}
-                  >
-                    {cfg.label}
-                  </span>
-                </div>
-
-                <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-semibold)] text-[color:var(--text-primary)] mb-3 leading-snug">
-                  {section.headline}
-                </h2>
-                <p className="text-[length:var(--font-size-text-sm)] text-[color:var(--text-tertiary)] leading-relaxed mb-6">
-                  {section.detail}
-                </p>
-
-                {/* Mini timeline */}
-                <div className="relative mb-6">
-                  <div className="absolute left-1 top-1 bottom-1 w-px" style={{ backgroundColor: `${cfg.color}20` }} />
-                  <div className="space-y-2.5">
-                    {section.timeline.map((t, ti) => {
-                      const isLast = ti === section.timeline.length - 1;
-                      return (
-                        <div key={ti} className="flex items-start gap-2.5 relative">
-                          <div
-                            className="shrink-0 w-2 h-2 rounded-full mt-1"
-                            style={{ backgroundColor: isLast ? cfg.color : `${cfg.color}40` }}
-                          />
-                          <span
-                            className={`text-[length:var(--font-size-text-sm)] shrink-0 ${
-                              isLast
-                                ? "text-[color:var(--text-tertiary)] font-[var(--font-weight-medium)]"
-                                : "text-[color:var(--text-disabled)]"
-                            }`}
-                            style={{ width: 38 }}
-                          >
-                            {t.day}
-                          </span>
-                          <span
-                            className={`text-[length:var(--font-size-text-sm)] ${
-                              isLast ? "text-[color:var(--text-secondary)]" : "text-[color:var(--text-disabled)]"
-                            }`}
-                          >
-                            {t.event}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Historical context */}
-                <div className="pl-4" style={{ borderLeft: `2px solid ${cfg.color}25` }}>
-                  <p className="text-[length:var(--font-size-text-sm)] text-[color:var(--text-quaternary)] leading-relaxed">
-                    {section.context}
-                  </p>
-                </div>
+          {/* Right column: 7-day status history */}
+          <div>
+            <h2 className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] tracking-widest text-[color:var(--text-quaternary)] uppercase mb-5">
+              최근 7일 현황
+            </h2>
+            <div className="rounded-[var(--radius-xl)] border border-[var(--border-primary)] p-5 sticky top-[76px]">
+              <div className="space-y-0">
+                {weekStatus.map((d, i) => {
+                  const color = statusColors[d.status];
+                  const today = d.isToday;
+                  return (
+                    <div key={i} className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div
+                          className="w-2.5 h-2.5 rounded-full shrink-0 mt-1"
+                          style={{
+                            backgroundColor: today ? color : "var(--bg-quaternary)",
+                          }}
+                        />
+                        {i < weekStatus.length - 1 && (
+                          <div className="w-px flex-1 my-1 bg-[var(--border-secondary)]" />
+                        )}
+                      </div>
+                      <div className="pb-6">
+                        <span className="text-[length:var(--font-size-text-xs)] text-[color:var(--text-disabled)]">
+                          {today ? `3/${d.day} (오늘)` : `3/${d.day}`}
+                        </span>
+                        <p
+                          className={`text-[length:var(--font-size-text-sm)] mt-1 leading-relaxed ${
+                            today
+                              ? "text-[color:var(--text-primary)] font-[var(--font-weight-medium)]"
+                              : "text-[color:var(--text-tertiary)]"
+                          }`}
+                          style={today ? { color } : undefined}
+                        >
+                          {statusLabels[d.status]}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-
-        {/* Footer note */}
-        <div className="border-t border-[var(--border-secondary)] mt-10 pt-6">
-          <p className="text-[length:var(--font-size-text-xs)] text-[color:var(--text-disabled)]">
-            AI가 주요 지표를 종합해 생성한 요약입니다
-          </p>
+            </div>
+          </div>
         </div>
       </div>
 
