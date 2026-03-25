@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const marketStatus = {
   label: "현황 : 약세",
   phase: "관망 국면",
@@ -95,12 +97,12 @@ export function AISummaryCard() {
         </div>
 
         <div className="flex justify-end mt-[var(--spacing-xl)]">
-          <a
+          <Link
             href="/summary"
             className="text-[length:var(--font-size-text-2xs)] leading-[var(--line-height-text-xs)] text-blue-600 dark:text-blue-400 no-underline hover:underline"
           >
             더보기
-          </a>
+          </Link>
         </div>
       </div>
     </>
