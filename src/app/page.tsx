@@ -13,12 +13,18 @@ import { CommunitySentimentCard } from "@/components/CommunitySentimentCard";
 import { TechnicalIndicatorCard } from "@/components/TechnicalIndicatorCard";
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") !== "light";
+  const [isDark, setIsDark] = useState(true);
+
+  // Sync theme from localStorage on mount, then on every toggle
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      setIsDark(false);
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
     }
-    return true;
-  });
+  }, []);
 
   useEffect(() => {
     const theme = isDark ? "dark" : "light";

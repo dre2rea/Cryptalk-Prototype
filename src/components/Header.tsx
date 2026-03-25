@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SearchIcon, MoonIcon, SunIcon, BellIcon, UserIcon } from "./icons";
 
 const navItems = [
@@ -18,9 +17,9 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
       <div className="w-full px-8 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">
-          <Link href="/" className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight no-underline">
+          <a href="/" className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight no-underline">
             CRYPTALK
-          </Link>
+          </a>
           <nav className="flex items-center gap-4">
             {navItems.map((item) => (
               <button

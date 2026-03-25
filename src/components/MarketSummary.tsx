@@ -31,7 +31,7 @@ function ChevronButton({ direction, onClick }: { direction: "left" | "right"; on
       onClick={onClick}
       aria-label={direction === "left" ? "이전 슬라이드" : "다음 슬라이드"}
       className="absolute top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] rounded-full border border-[var(--border-primary)] bg-[var(--bg-secondary)] flex items-center justify-center cursor-pointer hover:bg-[var(--bg-tertiary)] transition-colors duration-150"
-      style={{ [direction === "left" ? "left" : "right"]: -16 }}
+      style={{ [direction === "left" ? "left" : "right"]: 0 }}
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path
@@ -100,7 +100,7 @@ export function MarketSummary() {
       <div className="relative">
         {canScrollLeft && (
           <>
-            <div className="absolute left-0 top-0 bottom-0 w-[48px] z-[5] pointer-events-none" style={{ background: "linear-gradient(to right, var(--bg-primary), transparent)" }} />
+            <div className="absolute left-0 top-0 bottom-0 w-[64px] z-[5] pointer-events-none" style={{ background: "linear-gradient(to right, var(--bg-primary) 30%, transparent)" }} />
             <ChevronButton direction="left" onClick={() => scroll("left")} />
           </>
         )}
@@ -116,7 +116,7 @@ export function MarketSummary() {
             ))
           )}
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-[48px] z-[5] pointer-events-none" style={{ background: "linear-gradient(to left, var(--bg-primary), transparent)" }} />
+        <div className="absolute right-0 top-0 bottom-0 w-[64px] z-[5] pointer-events-none" style={{ background: "linear-gradient(to left, var(--bg-primary) 15%, transparent)" }} />
         <ChevronButton direction="right" onClick={() => scroll("right")} />
       </div>
     </section>

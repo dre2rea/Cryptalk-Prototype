@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="ko" data-theme="dark" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}` }} />
         <link
           href="https://fonts.googleapis.com/css2?family=Sarpanch:wght@700&display=swap"
           rel="stylesheet"
