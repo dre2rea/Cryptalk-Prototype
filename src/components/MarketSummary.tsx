@@ -7,6 +7,7 @@ const standardMetrics = [
   { label: "비트코인 도미넌스", value: "60.22%", changePercent: 1.84, trend: "up" as const },
   { label: "공포탐욕지수", value: "18", changePercent: 0, trend: "down" as const, badge: "극단적 공포", badgeVariant: "danger" as const },
   { label: "김치 프리미엄", value: "-1.11%", changePercent: 0, trend: "down" as const, badge: "역전", badgeVariant: "danger" as const },
+  { label: "변동성 인덱스", value: "38.7", changePercent: 12.4, trend: "up" as const },
 ];
 
 const btc = coins.find((c) => c.id === "bitcoin")!;
@@ -23,18 +24,13 @@ export function MarketSummary() {
       <h2 className="text-[16px] leading-[24px] font-semibold text-[var(--text-secondary)]">
         시장 현황
       </h2>
-      <div className="flex items-center gap-3">
-        <div className="flex gap-[10px]">
-          {standardMetrics.map((m) => (
-            <MetricItem key={m.label} {...m} />
-          ))}
-        </div>
-        <div className="shrink-0 h-[32px]" style={{ width: 1, background: 'var(--border-primary)' }} />
-        <div className="flex gap-[10px]">
-          {chartMetrics.map((m) => (
-            <MetricItem key={m.label} {...m} />
-          ))}
-        </div>
+      <div className="flex items-center gap-[10px]">
+        {standardMetrics.map((m) => (
+          <MetricItem key={m.label} {...m} />
+        ))}
+        {chartMetrics.map((m) => (
+          <MetricItem key={m.label} {...m} />
+        ))}
       </div>
     </section>
   );
