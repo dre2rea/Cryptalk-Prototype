@@ -191,7 +191,7 @@ export function NewsCard() {
                   <path
                     d="M4 6L8 10L12 6"
                     stroke="var(--text-quaternary)"
-                    strokeWidth="1.5"
+                    strokeWidth="1.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />

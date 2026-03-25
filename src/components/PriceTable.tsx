@@ -16,7 +16,7 @@ function StarIcon({ filled, onClick }: { filled: boolean; onClick: () => void })
       onClick={(e) => { e.stopPropagation(); onClick(); }}
       className="shrink-0 p-0 border-none bg-transparent cursor-pointer flex items-center justify-center transition-transform duration-150 ease-in-out hover:scale-[1.1]"
     >
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
         <path
           d="M8 1.5l1.76 3.57 3.94.57-2.85 2.78.67 3.93L8 10.67l-3.52 1.68.67-3.93L2.3 5.64l3.94-.57L8 1.5z"
           fill={filled ? "var(--star-filled)" : "none"}
