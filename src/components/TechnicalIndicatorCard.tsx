@@ -287,7 +287,7 @@ function IndicatorCard({ type }: { type: CardType }) {
             }}
           >
             {/* Rank */}
-            <span className="w-[10px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
+            <span className="w-[10px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums mr-[2px]">
               {item.rank}
             </span>
 

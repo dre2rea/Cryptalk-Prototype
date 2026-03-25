@@ -52,7 +52,7 @@
   --font-weight-bold: 700;
 
   /* Text colors */
-  --text-primary: #181d27;
+  --text-primary: #1e293b;
   --text-secondary: #414651;
   --text-tertiary: #535862;
   --text-quaternary: #717680;
@@ -78,7 +78,7 @@
   --bg-secondary: #ffffff;
   --bg-tertiary: #f5f5f5;
   --bg-quaternary: #e9eaeb;
-  --bg-active: #e9eaeb;
+  --bg-active: #f5f5f6;
   --bg-disabled: #e9eaeb;
 
   /* Border colors */
@@ -91,6 +91,9 @@
   --badge-text: #414651;
   --badge-danger-bg: rgba(217, 45, 32, 0.08);
   --badge-success-bg: rgba(7, 148, 85, 0.08);
+
+  /* Star */
+  --star-filled: #E1CB00;
 
   /* Shadows */
   --shadow-card: 0px 4px 18px 0px rgba(0, 0, 0, 0.02);
@@ -119,10 +122,10 @@
   --fg-disabled: #85888e;
   --fg-neutral-primary: #61656c;
   --fg-brand-primary: #7d7ffc;
-  --fg-error-primary: #f04438;
-  --fg-error-rgb: 240, 68, 56;
-  --fg-success-primary: #17b26a;
-  --fg-success-rgb: 23, 178, 106;
+  --fg-error-primary: #F6465D;
+  --fg-error-rgb: 246, 70, 93;
+  --fg-success-primary: #0ECB81;
+  --fg-success-rgb: 14, 203, 129;
   --kol-block-bg: #293056;
   --kol-block-bg-hover: #363f72;
 
@@ -142,8 +145,11 @@
   --badge-bg: #22262f;
   --badge-border: #373a41;
   --badge-text: #94979c;
-  --badge-danger-bg: rgba(240, 68, 56, 0.18);
-  --badge-success-bg: rgba(5, 51, 33, 0.72);
+  --badge-danger-bg: rgba(246, 70, 93, 0.18);
+  --badge-success-bg: rgba(14, 203, 129, 0.12);
+
+  /* Star */
+  --star-filled: #D4B514;
 
   /* Shadows */
   --shadow-card: 0px 2px 20px 0px rgba(10, 13, 18, 0.06);

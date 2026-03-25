@@ -13,12 +13,12 @@ import { CommunitySentimentCard } from "@/components/CommunitySentimentCard";
 import { TechnicalIndicatorCard } from "@/components/TechnicalIndicatorCard";
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) setIsDark(saved === "dark");
-  }, []);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") !== "light";
+    }
+    return true;
+  });
 
   useEffect(() => {
     const theme = isDark ? "dark" : "light";

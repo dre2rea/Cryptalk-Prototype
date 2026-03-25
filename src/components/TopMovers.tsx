@@ -126,7 +126,7 @@ function MoverCard({
             tabIndex={0}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
-            className="flex items-center gap-[var(--spacing-md)] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-150 ease-in-out"
+            className="flex items-center gap-[10px] py-[var(--spacing-md)] px-[var(--spacing-sm)] rounded-[var(--radius-base)] cursor-pointer transition-[background-color] duration-150 ease-in-out"
             style={{
               backgroundColor:
                 hovered === i ? "var(--bg-active)" : "transparent",
