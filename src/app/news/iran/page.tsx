@@ -154,7 +154,7 @@ export default function NewsDetailPage() {
                 {newsItem.summary.map((para, i) => (
                   <p
                     key={i}
-                    className="text-[length:var(--font-size-text-md)] text-[color:var(--text-tertiary)] leading-relaxed"
+                    className="text-[length:var(--font-size-text-md)] text-[color:var(--text-secondary)] leading-relaxed"
                   >
                     {para}
                   </p>
