@@ -226,7 +226,7 @@ export function PriceTable() {
     }
   });
 
-  const displayCoins = sorted.slice(0, 7);
+  const displayCoins = sorted.slice(0, 10);
 
   return (
     <div className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
@@ -315,14 +315,14 @@ export function PriceTable() {
               />
 
               {/* Rank */}
-              <span className="w-[10px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
+              <span className="w-[16px] text-center shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
                 {i + 1}
               </span>
 
               {/* Coin name */}
               <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
                 <CoinIcon symbol={coin.symbol} image={coin.image} />
-                <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
+                <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
                   {coin.nameKr}
                 </span>
                 <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0">
@@ -331,13 +331,13 @@ export function PriceTable() {
               </div>
 
               {/* Price */}
-              <span className="w-[80px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] tabular-nums">
+              <span className="w-[80px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] tabular-nums">
                 {formatPrice(coin.currentPrice)}
               </span>
 
               {/* 1H change */}
               <span
-                className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
+                className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums"
                 style={{
                   color: coin.change1h >= 0
                     ? "var(--fg-success-primary)"
@@ -350,7 +350,7 @@ export function PriceTable() {
 
               {/* 24H change */}
               <span
-                className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
+                className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums"
                 style={{
                   color: coin.change1d >= 0
                     ? "var(--fg-success-primary)"
@@ -363,7 +363,7 @@ export function PriceTable() {
 
               {/* 7D change */}
               <span
-                className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
+                className="w-[64px] text-right shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums"
                 style={{
                   color: coin.change7d >= 0
                     ? "var(--fg-success-primary)"
