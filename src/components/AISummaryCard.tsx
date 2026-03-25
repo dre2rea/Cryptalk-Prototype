@@ -96,7 +96,7 @@ export function AISummaryCard() {
 
         <div className="flex justify-end mt-[var(--spacing-xl)]">
           <a
-            href="#"
+            href="/summary"
             className="text-[length:var(--font-size-text-2xs)] leading-[var(--line-height-text-xs)] text-blue-600 dark:text-blue-400 no-underline hover:underline"
           >
             더보기

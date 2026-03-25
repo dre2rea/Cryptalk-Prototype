@@ -13,28 +13,25 @@ import { CommunitySentimentCard } from "@/components/CommunitySentimentCard";
 import { TechnicalIndicatorCard } from "@/components/TechnicalIndicatorCard";
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("theme") !== "light";
+  });
 
-  // Sync theme from localStorage on mount, then on every toggle
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") {
-      setIsDark(false);
-      document.documentElement.setAttribute("data-theme", "light");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-  }, []);
-
+  // Keep the DOM theme and persisted theme in sync with React state.
   useEffect(() => {
     const theme = isDark ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [isDark]);
 
+  const handleThemeToggle = () => {
+    setIsDark((prev) => !prev);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-primary)]">
-      <Header isDark={isDark} onThemeToggle={() => setIsDark(!isDark)} />
+      <Header isDark={isDark} onThemeToggle={handleThemeToggle} />
       <main className="flex-1 pt-[100px] pb-32 px-8 max-w-[1440px] mx-auto w-full">
         {/* 시장 현황 */}
         <MarketSummary />

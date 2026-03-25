@@ -48,34 +48,23 @@ function ChevronButton({ direction, onClick }: { direction: "left" | "right"; on
 
 export function MarketSummary() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const setWidthRef = useRef(0);
-
-  // Measure the width of one full set of cards
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    // Total scroll width is 2 sets; one set = scrollWidth / 2
-    setWidthRef.current = el.scrollWidth / 2;
-  }, []);
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
 
-  // Infinite loop: when scrolled past the first set, jump back seamlessly
+  // Infinite loop: when scrolled past the first set, jump back seamlessly.
   const handleScroll = useCallback(() => {
     const el = scrollRef.current;
-    if (!el || setWidthRef.current === 0) return;
-    if (el.scrollLeft >= setWidthRef.current) {
-      el.scrollLeft -= setWidthRef.current;
+    if (!el) return;
+
+    const setWidth = el.scrollWidth / 2;
+    if (setWidth <= 0) return;
+
+    if (el.scrollLeft >= setWidth) {
+      el.scrollLeft -= setWidth;
     }
+
     setCanScrollLeft(el.scrollLeft > 0);
   }, []);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
 
   const scroll = useCallback((dir: "left" | "right") => {
     const el = scrollRef.current;
@@ -84,7 +73,7 @@ export function MarketSummary() {
     el.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
   }, []);
 
-  // Auto-scroll right every 3s
+  // Auto-scroll right every 3s.
   useEffect(() => {
     const interval = setInterval(() => {
       scroll("right");
@@ -106,6 +95,7 @@ export function MarketSummary() {
         )}
         <div
           ref={scrollRef}
+          onScroll={handleScroll}
           className="flex items-center overflow-x-auto"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none", gap: GAP }}
         >
