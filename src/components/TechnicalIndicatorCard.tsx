@@ -201,7 +201,7 @@ const cardConfigs: Record<CardType, CardConfig> = {
       const color = mode === "급등" ? "var(--fg-success-primary)" : "var(--fg-error-primary)";
       return (
         <span
-          className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums text-right shrink-0"
+          className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums text-right shrink-0"
           style={{ color }}
         >
           {formatVolume(item.value)}
@@ -215,7 +215,7 @@ const cardConfigs: Record<CardType, CardConfig> = {
     toggleOptions: ["과매도", "과매수"],
     getData: (mode) => (mode === "과매도" ? oversoldCoins : overboughtCoins),
     formatValue: (item) => (
-      <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums text-[color:var(--text-secondary)] text-right shrink-0">
+      <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums text-[color:var(--text-secondary)] text-right shrink-0">
         {item.value.toFixed(1)}
       </span>
     ),
@@ -228,7 +228,7 @@ const cardConfigs: Record<CardType, CardConfig> = {
     formatValue: (item) => (
       <div className="flex items-center gap-[var(--spacing-lg)] shrink-0">
         <OiSignal oiChange={item.value} priceChange={item.priceChange!} />
-        <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums text-[color:var(--text-secondary)] text-right">
+        <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums text-[color:var(--text-secondary)] text-right">
           {item.value > 0 ? "+" : ""}{item.value}%
         </span>
       </div>
@@ -243,7 +243,7 @@ const cardConfigs: Record<CardType, CardConfig> = {
       const color = mode === "롱 과열" ? "var(--fg-success-primary)" : "var(--fg-error-primary)";
       return (
         <span
-          className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums text-right shrink-0"
+          className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums text-right shrink-0"
           style={{ color }}
         >
           {item.value >= 0 ? "+" : ""}{item.value.toFixed(3)}%
@@ -296,7 +296,7 @@ function IndicatorCard({ type }: { type: CardType }) {
 
             {/* Name + Ticker */}
             <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
-              <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
+              <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.name}
               </span>
               <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0">

@@ -142,7 +142,7 @@ function MoverCard({
 
             {/* Name + Ticker */}
             <div className="flex items-center gap-[var(--spacing-md)] flex-1 min-w-0">
-              <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
+              <span className="text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] text-[color:var(--text-secondary)] whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.name}
               </span>
               <span className="text-[length:var(--font-size-text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] shrink-0">
@@ -157,7 +157,7 @@ function MoverCard({
 
             {/* Change */}
             <span
-              className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] tabular-nums"
+              className="flex items-center justify-end gap-1 w-[72px] shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-sm)] tabular-nums"
               style={{ color: accentColor }}
             >
               {isGainer ? <ArrowUpIcon size={8} className="text-inherit" /> : <ArrowDownIcon size={8} className="text-inherit" />}

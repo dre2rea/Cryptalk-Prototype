@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import type { MouseEvent } from "react";
 import { SearchIcon, MoonIcon, SunIcon, BellIcon, UserIcon } from "./icons";
 
 const navItems = [
@@ -13,12 +15,28 @@ interface HeaderProps {
 }
 
 export function Header({ isDark, onThemeToggle }: HeaderProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      window.location.reload();
+      return;
+    }
+    router.push("/");
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-[var(--bg-primary)] border-b border-[var(--border-secondary)] flex items-center justify-center">
       <div className="w-full px-8 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center gap-[39px]">
-          <Link href="/" className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight no-underline">
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className="font-['Sarpanch',sans-serif] text-[20px] font-bold text-[var(--text-primary)] tracking-tight no-underline"
+          >
             CRYPTALK
           </Link>
           <nav className="flex items-center gap-4">

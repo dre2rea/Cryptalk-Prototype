@@ -14,21 +14,24 @@ import { TechnicalIndicatorCard } from "@/components/TechnicalIndicatorCard";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") !== "light";
-    }
-    return true;
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("theme") !== "light";
   });
 
+  // Keep the DOM theme and persisted theme in sync with React state.
   useEffect(() => {
     const theme = isDark ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [isDark]);
 
+  const handleThemeToggle = () => {
+    setIsDark((prev) => !prev);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-primary)]">
-      <Header isDark={isDark} onThemeToggle={() => setIsDark(!isDark)} />
+      <Header isDark={isDark} onThemeToggle={handleThemeToggle} />
       <main className="flex-1 pt-[100px] pb-32 px-8 max-w-[1440px] mx-auto w-full">
         {/* 시장 현황 */}
         <MarketSummary />
