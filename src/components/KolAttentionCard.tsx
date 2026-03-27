@@ -291,7 +291,7 @@ export function KolAttentionCard() {
         })()}
 
       <p className="text-[11px] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] m-0 mt-[var(--spacing-lg)]">
-        국내외 KOL {kolRegion === "국내" ? "32" : "55"}명 · 지난 24시간 언급량 기준
+        국내외 KOL {kolRegion === "국내" ? "32" : "55"}명 · 3월 26일 언급량 기준
       </p>
     </div>
   );
