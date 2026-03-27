@@ -141,21 +141,14 @@ export function CommunitySentimentCard() {
                   <div
                     className="h-full rounded-l-full"
                     style={{
-                      width: `${platform.positive}%`,
+                      width: `${(platform.positive / (platform.positive + platform.negative)) * 100}%`,
                       background: `rgba(var(--fg-success-rgb), 0.5)`,
-                 }}
-                  />
-                  <div
-                    className="h-full"
-                    style={{
-                      width: `${platform.neutral}%`,
-                      background: "var(--fg-neutral-primary)",
                     }}
                   />
                   <div
                     className="h-full rounded-r-full"
                     style={{
-                      width: `${platform.negative}%`,
+                      width: `${(platform.negative / (platform.positive + platform.negative)) * 100}%`,
                       background: `rgba(var(--fg-error-rgb), 0.5)`,
                     }}
                   />
