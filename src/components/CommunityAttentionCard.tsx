@@ -38,7 +38,7 @@ function CoinIcon({ ticker, size = 22 }: { ticker: string; size?: number }) {
 
 
 // ─── Data ───────────────────────────────────────────────────────────────────
-interface KolItem {
+interface CommunityItem {
   rank: number;
   name: string;
   ticker: string;
@@ -48,7 +48,7 @@ interface KolItem {
   spark: number[];
 }
 
-const kolDataKR: KolItem[] = [
+const communityDataKR: CommunityItem[] = [
   { rank: 1, name: "솔라나", ticker: "SOL", mentions: 47, prevMentions: 31, summary: "DEX 거래량 급증, Firedancer 업데이트 기대감", spark: [12, 14, 18, 15, 13, 19, 22, 20, 28, 25, 31, 35, 47] },
   { rank: 2, name: "수이", ticker: "SUI", mentions: 38, prevMentions: 15, summary: "TVL 신고점 경신, 디파이 생태계 확장 주목", spark: [5, 6, 8, 7, 9, 10, 12, 11, 15, 20, 24, 30, 38] },
   { rank: 3, name: "비트코인", ticker: "BTC", mentions: 34, prevMentions: 36, summary: "ETF 유입량 둔화, 단기 조정 가능성 언급", spark: [40, 42, 38, 44, 41, 36, 39, 35, 37, 33, 36, 35, 34] },
@@ -58,7 +58,7 @@ const kolDataKR: KolItem[] = [
   { rank: 7, name: "아발란체", ticker: "AVAX", mentions: 12, prevMentions: 14, summary: "서브넷 활용 사례 증가, 기관 RWA 파일럿", spark: [10, 11, 14, 12, 15, 13, 11, 14, 16, 13, 11, 13, 12] },
 ];
 
-const kolDataGlobal: KolItem[] = [
+const communityDataGlobal: CommunityItem[] = [
   { rank: 1, name: "비트코인", ticker: "BTC", mentions: 112, prevMentions: 98, summary: "ETF inflows steady, post-halving supply squeeze narrative", spark: [85, 88, 90, 86, 92, 95, 91, 98, 96, 100, 104, 108, 112] },
   { rank: 2, name: "이더리움", ticker: "ETH", mentions: 89, prevMentions: 74, summary: "Pectra upgrade hype, blob fee market discussion", spark: [60, 58, 65, 62, 68, 64, 70, 72, 74, 78, 80, 84, 89] },
   { rank: 3, name: "솔라나", ticker: "SOL", mentions: 76, prevMentions: 82, summary: "Firedancer mainnet timeline, DEX volume dominance", spark: [90, 92, 88, 86, 85, 82, 84, 80, 78, 82, 79, 77, 76] },
@@ -69,12 +69,12 @@ const kolDataGlobal: KolItem[] = [
 ];
 
 // ─── Component ──────────────────────────────────────────────────────────────
-export function KolAttentionCard() {
+export function CommunityAttentionCard() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const mousePosRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
-  const [kolRegion, setKolRegion] = useState<"국내" | "해외">("국내");
+  const [activeRegion, setActiveRegion] = useState<"국내" | "해외">("국내");
   const cardRef = useRef<HTMLDivElement>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -105,12 +105,12 @@ export function KolAttentionCard() {
   };
 
   const handleRegionSwitch = (region: "국내" | "해외") => {
-    if (region === kolRegion) return;
-    setKolRegion(region);
+    if (region === activeRegion) return;
+    setActiveRegion(region);
     setHovered(null);
   };
 
-  const activeData = kolRegion === "국내" ? kolDataKR : kolDataGlobal;
+  const activeData = activeRegion === "국내" ? communityDataKR : communityDataGlobal;
 
   const topRow = activeData.slice(0, 3);
   const bottomRow = activeData.slice(3, 7);
@@ -119,13 +119,13 @@ export function KolAttentionCard() {
 
   // Plain render function (NOT a component) — prevents unmount/remount on re-render,
   // which would swallow onMouseLeave events and leave the tooltip stuck.
-  function renderTreeBlock(item: KolItem, idx: number, widthPct: number) {
+  function renderTreeBlock(item: CommunityItem, idx: number, widthPct: number) {
     const trend = getTrend(item.mentions, item.prevMentions);
     const isHovered = hovered === idx;
 
     const bgColor = isHovered
-      ? "var(--kol-block-bg-hover)"
-      : "var(--kol-block-bg)";
+      ? "var(--community-block-bg-hover)"
+      : "var(--community-block-bg)";
 
     const trendColor =
       trend.dir === "up"
@@ -178,7 +178,7 @@ export function KolAttentionCard() {
       {/* Header */}
       <div className="flex items-center justify-between mb-[var(--spacing-xl)]">
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
-          KOL 관심 종목
+          커뮤니티 관심 종목
         </h2>
         <div className="flex rounded-[7px] bg-[var(--bg-primary)] border border-[var(--border-secondary)] p-px gap-0">
           {(["국내", "해외"] as const).map((label) => (
@@ -186,7 +186,7 @@ export function KolAttentionCard() {
               key={label}
               onClick={() => handleRegionSwitch(label)}
               className={`px-[9px] py-[2px] rounded-[var(--radius-base)] cursor-pointer text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] transition-all duration-150 ease-in-out ${
-                kolRegion === label
+                activeRegion === label
                   ? "border border-[var(--border-secondary)] font-[var(--font-weight-medium)] text-[color:var(--text-primary)] bg-[var(--bg-secondary)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   : "border border-transparent font-[var(--font-weight-regular)] text-[color:var(--text-quaternary)] bg-transparent shadow-none"
               }`}
@@ -291,10 +291,10 @@ export function KolAttentionCard() {
         })()}
 
       <p className="text-[11px] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)] m-0 mt-[var(--spacing-lg)]">
-        국내외 KOL {kolRegion === "국내" ? "32" : "55"}명 · 3월 26일 언급량 기준
+        국내외 커뮤니티 {activeRegion === "국내" ? "32" : "55"}개 · 3월 26일 언급량 기준
       </p>
     </div>
   );
 }
 
-export default KolAttentionCard;
+export default CommunityAttentionCard;
