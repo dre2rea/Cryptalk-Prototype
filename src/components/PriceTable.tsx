@@ -174,6 +174,30 @@ function formatPrice(price: number): string {
   return `$${price.toFixed(3)}`;
 }
 
+function ChevronIcon({ direction, disabled, onClick }: { direction: "left" | "right"; disabled: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`p-1.5 rounded-[var(--radius-base)] border border-[var(--border-secondary)] bg-[var(--bg-primary)] flex items-center justify-center transition-all duration-150 ${
+        disabled
+          ? "opacity-30 cursor-not-allowed"
+          : "cursor-pointer hover:bg-[var(--bg-active)] hover:border-[var(--border-primary)]"
+      }`}
+    >
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path
+          d={direction === "left" ? "M11 4.5L6.5 9l4.5 4.5" : "M7 4.5L11.5 9 7 13.5"}
+          stroke={disabled ? "var(--text-disabled)" : "var(--text-tertiary)"}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
+
 export function PriceTable() {
   const [tab, setTab] = useState<Tab>("all");
   const [sortField, setSortField] = useState<SortField>(null);
@@ -181,6 +205,7 @@ export function PriceTable() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [animateLayout, setAnimateLayout] = useState(true);
   const [favoriteIds, setFavoriteIds] = useState(initialFavorites);
+  const [page, setPage] = useState(0);
 
   const toggleFavorite = (id: string) => {
     setFavoriteIds((prev) => {
@@ -194,6 +219,7 @@ export function PriceTable() {
   const handleTabChange = (t: Tab) => {
     setAnimateLayout(false);
     setTab(t);
+    setPage(0);
   };
 
   const handleSort = (field: SortField) => {
@@ -226,7 +252,9 @@ export function PriceTable() {
     }
   });
 
-  const displayCoins = sorted.slice(0, 10);
+  const pageSize = 10;
+  const totalPages = Math.ceil(sorted.length / pageSize);
+  const displayCoins = sorted.slice(page * pageSize, (page + 1) * pageSize);
 
   return (
     <div className="rounded-[var(--radius-xl)] border border-[var(--border-secondary)] bg-[var(--bg-secondary)] p-[var(--spacing-2xl)] shadow-[var(--shadow-card)]">
@@ -316,7 +344,7 @@ export function PriceTable() {
 
               {/* Rank */}
               <span className="w-[16px] text-center shrink-0 text-[length:var(--font-size-text-sm)] font-[var(--font-weight-regular)] leading-[var(--line-height-text-sm)] text-[color:var(--text-disabled)] tabular-nums">
-                {i + 1}
+                {page * pageSize + i + 1}
               </span>
 
               {/* Coin name */}
@@ -382,6 +410,14 @@ export function PriceTable() {
           );
         })}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-[var(--spacing-lg)] pt-[var(--spacing-lg)] border-t border-[var(--border-secondary)]">
+          <ChevronIcon direction="left" disabled={page === 0} onClick={() => setPage((p) => p - 1)} />
+          <ChevronIcon direction="right" disabled={page >= totalPages - 1} onClick={() => setPage((p) => p + 1)} />
+        </div>
+      )}
     </div>
   );
 }

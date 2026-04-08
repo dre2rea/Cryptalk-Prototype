@@ -7,7 +7,7 @@ import { MarketSummary } from "@/components/MarketSummary";
 import { AISummaryCard } from "@/components/AISummaryCard";
 import { TopMovers } from "@/components/TopMovers";
 import { NewsCard } from "@/components/NewsCard";
-import { KolAttentionCard } from "@/components/KolAttentionCard";
+import { CommunityAttentionCard } from "@/components/CommunityAttentionCard";
 import { PriceTable } from "@/components/PriceTable";
 import { CommunitySentimentCard } from "@/components/CommunitySentimentCard";
 import { TechnicalIndicatorCard } from "@/components/TechnicalIndicatorCard";
@@ -55,7 +55,7 @@ export default function Home() {
           </h2>
           <div className="flex gap-3 items-stretch">
             <div className="basis-[65%] shrink-0 flex">
-              <KolAttentionCard />
+              <CommunityAttentionCard />
             </div>
             <div className="basis-[35%] min-w-0 flex">
               <CommunitySentimentCard />

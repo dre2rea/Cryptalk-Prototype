@@ -70,8 +70,8 @@
   --fg-error-rgb: 217, 45, 32;
   --fg-success-primary: #079455;
   --fg-success-rgb: 7, 148, 85;
-  --kol-block-bg: #edf1ff;
-  --kol-block-bg-hover: #dfe4ff;
+  --community-block-bg: #edf1ff;
+  --community-block-bg-hover: #dfe4ff;
 
   /* Background colors */
   --bg-primary: #fafafa;
@@ -126,8 +126,8 @@
   --fg-error-rgb: 246, 70, 93;
   --fg-success-primary: #0ECB81;
   --fg-success-rgb: 14, 203, 129;
-  --kol-block-bg: #293056;
-  --kol-block-bg-hover: #363f72;
+  --community-block-bg: #293056;
+  --community-block-bg-hover: #363f72;
 
   /* Background colors */
   --bg-primary: #0c0e12;

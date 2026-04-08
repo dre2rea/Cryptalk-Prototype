@@ -97,8 +97,8 @@ export function CommunitySentimentCard() {
         <h2 className="text-[length:var(--font-size-text-md)] font-[var(--font-weight-medium)] leading-[var(--line-height-text-md)] text-[color:var(--text-primary)] m-0">
           커뮤니티 분위기
         </h2>
-        <span className="text-[length:var(--font-size-text-xs)] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)]">
-          지난 24시간 기준
+        <span className="text-[11px] leading-[var(--line-height-text-xs)] text-[color:var(--text-quaternary)]">
+          3월 26일 기준
         </span>
       </div>
 
@@ -141,21 +141,14 @@ export function CommunitySentimentCard() {
                   <div
                     className="h-full rounded-l-full"
                     style={{
-                      width: `${platform.positive}%`,
+                      width: `${(platform.positive / (platform.positive + platform.negative)) * 100}%`,
                       background: `rgba(var(--fg-success-rgb), 0.5)`,
-                 }}
-                  />
-                  <div
-                    className="h-full"
-                    style={{
-                      width: `${platform.neutral}%`,
-                      background: "var(--fg-neutral-primary)",
                     }}
                   />
                   <div
                     className="h-full rounded-r-full"
                     style={{
-                      width: `${platform.negative}%`,
+                      width: `${(platform.negative / (platform.positive + platform.negative)) * 100}%`,
                       background: `rgba(var(--fg-error-rgb), 0.5)`,
                     }}
                   />
