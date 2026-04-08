@@ -6,7 +6,6 @@ import { SearchIcon, MoonIcon, SunIcon, BellIcon, UserIcon } from "./icons";
 const navItems = [
   { label: "시장 현황", active: true },
   { label: "종목 골라보기", active: false },
-  { label: "커뮤니티", active: false },
 ];
 
 interface HeaderProps {
